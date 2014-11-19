@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    binding.pry
   end
 
   # GET /projects/1/edit

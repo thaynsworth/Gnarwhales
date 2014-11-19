@@ -27,12 +27,9 @@
     <%= f.label :end_date %><br>
     <%= f.datetime_select :end_date %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-<!-- <%= hidden_field_tag :user_id, @current_user %>
- -->
+  
+<%= hidden_field_tag :user_id, @current_user.id %>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>
