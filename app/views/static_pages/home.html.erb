@@ -1,6 +1,4 @@
-<section>
-	
-</section>
+
 
 <!-- <section>
 	<div class="create">Create</div>
@@ -12,17 +10,31 @@
 <section class='dashboard'>
 	<div class="collaborate">Collaborate</div>
 </section> -->
-
-
-<section class='dashboard'>
+ <header>
 	<h1 class="header">Project Share</h1>
-	<div class='choices'> 
-		<div class="create">Create</div>	
-		<div class="collaborate">Collaborate</div>
-	</div>
+</header>
 
+<center>
+<div id="login">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Log in" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</center>
+
+
+  <!--  <center>
 	<div class="elevator-pitch"> 
-		<p>ProjectShare is a network for project instigators who have goals but need resources. It connects Instiagtors & Collaborators and helps groups organize their projects. Unlike Kickstarter, we want your time not money.. :)</p>
+		<p>ProjectShare is a network for project instigators who have goals but need resources. It connects Instiagtors & Collaborators and helps groups organize their projects. Unlike Kickstarter, we want your time not money</p>
 		
 	</div>
-</section>
+   </center> -->
