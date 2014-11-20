@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20141120031440) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "summary"
-    t.string   "string"
     t.string   "website"
     t.string   "location"
   end
