@@ -28,7 +28,7 @@
     <%= f.datetime_select :end_date %>
   </div>
   
-<%= hidden_field_tag :user_id, @current_user.id %>
+  <input type='hidden' name='project[user_id]' value='<%= @current_user.id %>' />
  
   <div class="actions">
     <%= f.submit %>
