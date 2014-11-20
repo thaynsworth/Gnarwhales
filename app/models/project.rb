@@ -1,5 +1,10 @@
 class Project < ActiveRecord::Base
+<<<<<<< HEAD
   
+=======
+  belongs_to :user
+  has_many :comments
+>>>>>>> comments
   has_many :collaborations
   belongs_to :user
 

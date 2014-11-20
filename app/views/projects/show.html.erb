@@ -27,7 +27,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @project.user %>
+  <%= @project.user.name %>
 </p>
 
 
@@ -43,6 +43,19 @@
     <%= token_tag %>
     <input type="submit">
   </form>
+</form action=new_comment_path method='post' >
+  <input type='textarea' />
+</form>
+<% if @comments.empty? %>
+  No comments on this project yet...
+<% else %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <%= comment.body %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <% if @user_relation == "owner" %>

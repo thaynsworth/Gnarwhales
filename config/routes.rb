@@ -21,6 +21,11 @@ Rails.application.routes.draw do
 
   post '/skills/user' => 'skills#user_create'
   post '/skills/project' => 'skills#project_create'
+  
+  post 'comments' => 'comments#create', as: "new_comment"
+  patch 'comments' => 'comments#update'
+  delete 'comments/:id' => 'comments#destroy'
+  
 
   resources :users
   resources :projects
