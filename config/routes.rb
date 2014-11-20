@@ -16,9 +16,11 @@ Rails.application.routes.draw do
 
   post 'collaborations/create' => 'collaborations#create'
 
+  post '/skills/user' => 'skills#user_create'
+  post '/skills/project' => 'skills#project_create'
+
   resources :users
   resources :projects
-  resources :skills
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
