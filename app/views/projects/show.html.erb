@@ -30,13 +30,20 @@
   <%= @project.user %>
 </p>
 
-<p>
-  <strong>Skills Requested:</strong>
-  <% @project.skills.each do |skill| %>
-      <%= link_to skill.skill, skill_path(skill) %>
-  <% end %>
-</p>
 
+<% if @user_relation == "owner" %>
+  <form action='/skills/project' method="post" >
+    <select name="skill[skill]">
+      <option value="carpentry">carpentry</option>
+      <option value="design">design</option>
+      <option value="whittling">whittling</option>
+      <option value="barn-raising">barn-raising</option>
+    </select>
+    <input type="hidden" name="skill[project_id]" value="<%= @project.id %>">
+    <%= token_tag %>
+    <input type="submit">
+  </form>
+<% end %>
 
 <% if @user_relation == "owner" %>
   <%= button_to "delete", {:controller => :projects,
