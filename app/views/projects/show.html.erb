@@ -30,5 +30,13 @@
   <%= @project.user %>
 </p>
 
+<p>
+  <strong>Skills Requested:</strong>
+  <% @project.skills.each do |skill| %>
+      <%= link_to skill.skill, skill_path(skill) %>
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
