@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   delete 'collaborations/destroy/:id' => 'collaborations#destroy'
   patch 'collaborations/update/:id' => 'collaborations#update'
 
+  post 'comments' => 'comments#create', as: "new_comment"
+  patch 'comments' => 'comments#update'
+  delete 'comments/:id' => 'comments#destroy'
+  
+
   resources :users
   resources :projects
   resources :skills
