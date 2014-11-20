@@ -3,6 +3,7 @@ class CreateContributions < ActiveRecord::Migration
     create_table :contributions do |t|
       t.references :skill, index: true
       t.references :user, index: true
+      t.references :project, index: true
 
       t.timestamps
     end

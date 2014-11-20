@@ -2,20 +2,48 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$fg-column: 60px;             // Column Width
-$fg-gutter: 25px;             // Gutter Width
-$fg-max-columns: 12;          // Total Columns For Main Container
 
-.create {
-	width: flex-grid(6); 
-	height: 600px;      
-  margin-left: flex-gutter();
-	@include background(linear-gradient(lightblue, darkblue) left repeat);	
+body {
+	background: lightgrey;
 }
 
-.collaborate {
-	width: flex-grid(6); 
-	height: 600px;       
-  margin-left: flex-gutter();
-	@include background(linear-gradient(lightblue, darkblue) left repeat);	
+section.dashboard {
+	@include outer-container;
+
+	.header {
+		@include span-columns(12);
+		background: #FCAD19;
+		text-align: center;
+		height: 70px;
+	}
+
+	.choices {
+		@include span-columns(6);
+
+		.create {		
+			background: #F5EE2C;
+			border-radius: 50%;
+			width: 300px;
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			font-size: 30px;
+		}
+		.collaborate {
+			background: #06C200;
+			border-radius: 50%;
+			width: 300px;
+			height: 300px;	
+			line-height: 300px;
+			text-align: center;
+			font-size: 30px;
+		}	
+	}
+	.elevator-pitch {
+		@include span-columns(6);
+		font-size: 30px;
+		float: right;
+		padding-top: 100px;
+		text-align: center;		
+	}
 }
