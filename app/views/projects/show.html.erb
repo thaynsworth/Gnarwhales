@@ -30,5 +30,18 @@
   <%= @project.user %>
 </p>
 
+<% if @user_relation == "owner" %>
+  <%= button_to "delete", {:controller => :projects,
+      :action => 'destroy', 
+      :id => @project.id }, :method => :delete %>
+<% elsif @user_relation == "collaborator" %>
+  <p>Youre a Collaborator (make a button to leave the project)</p>
+<% else %>
+  <%= button_to "Collaborate!", '/collaborations/create', :class => "button", 
+  :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
+                            :'collaboration[project_id]' => @project.id,
+                            :'collaboration[status]' => "pending"}  %>
+<% end %>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
