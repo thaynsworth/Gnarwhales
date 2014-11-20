@@ -10,12 +10,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    user_relation
+    binding.pry
   end
 
   # GET /projects/new
   def new
     @project = Project.new
-    binding.pry
   end
 
   # GET /projects/1/edit
@@ -25,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    binding.pry
     @project = Project.new(project_params)
 
     respond_to do |format|

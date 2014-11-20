@@ -7,5 +7,15 @@ class User < ActiveRecord::Base
 	                  uniqueness: { case_sensitive: false }
 	has_secure_password
   has_many :collaborations
+  has_many :projects
 	validates :password, length: { minimum: 6} 
+
+  def collabs
+    binding.pry
+    collabsArray = self.collaborations.map do |collab|
+      Project.find(collab.project_id)
+    end
+    binding.pry
+    collabsArray
+  end
 end
