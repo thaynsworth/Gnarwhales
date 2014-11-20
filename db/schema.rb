@@ -50,6 +50,12 @@ ActiveRecord::Schema.define(version: 20141120031440) do
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
+  create_table "skills", force: true do |t|
+    t.string   "skill"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"

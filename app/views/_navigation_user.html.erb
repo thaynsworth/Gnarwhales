@@ -1,0 +1,11 @@
+<div class="links">
+
+  <div>
+  	<%= link_to "Users Directory", users_path %>
+  	<%= link_to "Projects Directory", projects_path %>
+  	<%= link_to "Profile", user_path(user) %>
+  	<%= link_to "My Projects", projects_path(user) %>
+		<%= link_to "Log out", logout_path, method: :delete %>
+  </div>
+
+</div>
