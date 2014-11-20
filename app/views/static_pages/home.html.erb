@@ -10,19 +10,19 @@
 <section class='dashboard'>
 	<div class="collaborate">Collaborate</div>
 </section> -->
- <header>
-	<h1 class="header">Project Share</h1>
-</header>
+<body id="body">
+<header>ProjectShare</header>
+
 
 <center>
 <div id="login">
     <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.label :email, class: 'form-control'%>
+      <%= f.text_field :email, class: 'form-control'%>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= f.label :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control'%>
 
       <%= f.submit "Log in" %>
     <% end %>
@@ -30,6 +30,7 @@
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </center>
+</body>
 
 
   <!--  <center>
