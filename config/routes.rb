@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   post 'collaborations/create' => 'collaborations#create'
+  get 'collaborations' => 'collaborations#index', as: "collaborations"
+  delete 'collaborations/destroy/:id' => 'collaborations#destroy'
+  patch 'collaborations/update/:id' => 'collaborations#update'
 
   resources :users
   resources :projects
