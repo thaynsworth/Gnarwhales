@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20141120031440) do
 
   # These are extensions that must be enabled in order to support this database
@@ -48,7 +47,6 @@ ActiveRecord::Schema.define(version: 20141120031440) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "summary"
-    t.string   "string"
     t.string   "website"
     t.string   "location"
   end
