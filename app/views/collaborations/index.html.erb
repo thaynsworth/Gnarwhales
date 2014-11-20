@@ -1,0 +1,15 @@
+<% if @collaborations.empty? %>
+  <h2>No pending Collaboration requests.</h2>
+<% else %>
+  <ul>
+    <% @collaborations.each do |collab, hash| %>
+      <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.
+      <%= button_to "accept", {:controller => :collaborations,
+      :action => 'update', 
+      :id => collab }, :method => :patch %>
+    <%= button_to "Reject", {:controller => :collaborations,
+      :action => 'destroy', 
+      :id => collab }, :method => :delete %>
+    <% end %>
+  </ul>
+<% end %>

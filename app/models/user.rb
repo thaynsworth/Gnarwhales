@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
 
   def collabs
     collabsArray = self.collaborations.map do |collab|
-      Project.find(collab.project_id)
+      if collab.status != "pending"
+        Project.find(collab.project_id)
+      end
     end
     collabsArray
   end
