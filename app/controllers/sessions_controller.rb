@@ -9,12 +9,12 @@ class SessionsController < ApplicationController
         redirect_back_or user
    else
   	render 'new'
-  end 
-  end 
+  end
+  end
 
-  def destroy 
+  def destroy
   	log_out
     redirect_to root_url
-  end 
+  end
 end
 
