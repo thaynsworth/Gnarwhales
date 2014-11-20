@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   root 'static_pages#home'
 
+  post 'collaborations/create' => 'collaborations#create'
+
   resources :users
   resources :projects
   resources :skills

@@ -1,3 +1,21 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$fg-column: 60px;             // Column Width
+$fg-gutter: 25px;             // Gutter Width
+$fg-max-columns: 12;          // Total Columns For Main Container
+
+.create {
+	width: flex-grid(6); 
+	height: 600px;      
+  margin-left: flex-gutter();
+	@include background(linear-gradient(lightblue, darkblue) left repeat);	
+}
+
+.collaborate {
+	width: flex-grid(6); 
+	height: 600px;       
+  margin-left: flex-gutter();
+	@include background(linear-gradient(lightblue, darkblue) left repeat);	
+}
