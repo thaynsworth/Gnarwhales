@@ -30,6 +30,14 @@
   <%= @project.user %>
 </p>
 
+<p>
+  <strong>Skills Requested:</strong>
+  <% @project.skills.each do |skill| %>
+      <%= link_to skill.skill, skill_path(skill) %>
+  <% end %>
+</p>
+
+
 <% if @user_relation == "owner" %>
   <%= button_to "delete", {:controller => :projects,
       :action => 'destroy', 

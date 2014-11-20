@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    binding.pry
   end
 
   # GET /projects/1/edit
@@ -70,6 +71,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :start_date, :user_id, :end_date, :collaborators)
+      params.require(:project).permit(:title, :description, :start_date, :end_date, :collaborators, :user_id)
     end
 end
