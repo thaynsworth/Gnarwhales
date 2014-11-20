@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    user_relation
   end
 
   # GET /projects/new
@@ -69,6 +70,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :start_date, :end_date, :collaborators, :user_id)
+      params.require(:project).permit(:title, :description, :start_date, :user_id, :end_date, :collaborators)
     end
 end

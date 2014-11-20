@@ -1,0 +1,40 @@
+
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div >
+    <%= form_for(@user) do |f| %>
+
+     <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target=_blank>change</a>
+    </div>
+      
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :summary %>
+      <%= f.text_field :summary%>
+
+      <%= f.label :location %>
+      <%= f.text_field :location%>
+
+      <%= f.label :website %>
+      <%= f.text_field :website%>
+
+      <%= f.submit "Save changes" %>
+    <% end %>
+
+    
+  </div>
+</div>
