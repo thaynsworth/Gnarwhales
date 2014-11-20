@@ -11,12 +11,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     user_relation
+    @comments = @project.comments
+
   end
 
   # GET /projects/new
   def new
     @project = Project.new
-    binding.pry
   end
 
   # GET /projects/1/edit

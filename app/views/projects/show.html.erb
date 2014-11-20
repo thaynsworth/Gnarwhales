@@ -27,16 +27,22 @@
 
 <p>
   <strong>User:</strong>
-  <%= @project.user %>
+  <%= @project.user.name %>
 </p>
-
-<p>
-  <strong>Skills Requested:</strong>
-  <% @project.skills.each do |skill| %>
-      <%= link_to skill.skill, skill_path(skill) %>
-  <% end %>
-</p>
-
+</form action=new_comment_path method='post' >
+  <input type='textarea' />
+</form>
+<% if @comments.empty? %>
+  No comments on this project yet...
+<% else %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <%= comment.body %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <% if @user_relation == "owner" %>
   <%= button_to "delete", {:controller => :projects,
