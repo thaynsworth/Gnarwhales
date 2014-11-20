@@ -43,7 +43,8 @@
     <%= token_tag %>
     <input type="submit">
   </form>
-</form action=new_comment_path method='post' >
+<% end %>
+</form action='<%= new_comment_path %>' method='post' >
   <input type='textarea' />
 </form>
 <% if @comments.empty? %>
@@ -73,5 +74,5 @@
                             :'collaboration[status]' => "pending"}  %>
 <% end %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) %> 
 <%= link_to 'Back', projects_path %>
