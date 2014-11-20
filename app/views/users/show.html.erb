@@ -12,3 +12,15 @@
 
 </h1>
 
+
+  <form action='/skills/user' method="post" >
+    <select name="skill[skill]">
+      <option value="carpentry">carpentry</option>
+      <option value="design">design</option>
+      <option value="whittling">whittling</option>
+      <option value="barn-raising">barn-raising</option>
+    </select>
+    <input type="hidden" name="skill[user_id]" value="<%= @current_user.id %>">
+    <%= token_tag %>
+    <input type="submit">
+  </form>

@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   delete 'collaborations/destroy/:id' => 'collaborations#destroy'
   patch 'collaborations/update/:id' => 'collaborations#update'
 
+  post '/skills/user' => 'skills#user_create'
+  post '/skills/project' => 'skills#project_create'
+
   resources :users
   resources :projects
-  resources :skills
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
