@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :contributions
 	before_save { self.email = email.downcase }
 	validates :name, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i  #regex for basic email -  should be a lot longer . . . a lot longer
@@ -8,7 +9,7 @@ class User < ActiveRecord::Base
 	has_secure_password
   has_many :collaborations
   has_many :projects
-	validates :password, length: { minimum: 6} 
+	validates :password, length: { minimum: 6}, on: :create
 
   def collabs
     collabsArray = self.collaborations.map do |collab|

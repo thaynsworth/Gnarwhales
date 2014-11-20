@@ -1,0 +1,7 @@
+<h1>Projects Tagged with <%= @skill.skill %></h1>
+
+<ul>
+  <% @skill.projects.each do |project| %>
+    <li><%= link_to project.title, project_path(project)%></li>
+  <% end %>
+</ul>

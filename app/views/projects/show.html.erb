@@ -30,12 +30,22 @@
   <%= @project.user %>
 </p>
 
+<p>
+  <strong>Skills Requested:</strong>
+  <% @project.skills.each do |skill| %>
+      <%= link_to skill.skill, skill_path(skill) %>
+  <% end %>
+</p>
+
+
 <% if @user_relation == "owner" %>
   <%= button_to "delete", {:controller => :projects,
       :action => 'destroy', 
       :id => @project.id }, :method => :delete %>
 <% elsif @user_relation == "collaborator" %>
-  <p>Youre a Collaborator (make a button to leave the project)</p>
+  <%= button_to "Leave", {:controller => :collaborations,
+      :action => 'destroy', 
+      :id => @collaboration.id }, :method => :delete %>
 <% else %>
   <%= button_to "Collaborate!", '/collaborations/create', :class => "button", 
   :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
