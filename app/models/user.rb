@@ -11,11 +11,9 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6} 
 
   def collabs
-    binding.pry
     collabsArray = self.collaborations.map do |collab|
       Project.find(collab.project_id)
     end
-    binding.pry
     collabsArray
   end
 end
