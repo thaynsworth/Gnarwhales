@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   post 'collaborations/create' => 'collaborations#create'
   get 'collaborations' => 'collaborations#index', as: "collaborations"
-  delete 'collaborations/destroy/:id' => 'collaborations#destroy'
+  delete'collaborations/destroy/:id' => 'collaborations#destroy', as: "destroy_collaboration"
   patch 'collaborations/update/:id' => 'collaborations#update', as: "collaboration"
 
   post '/skills/user' => 'skills#user_create'

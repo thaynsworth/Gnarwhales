@@ -14,9 +14,13 @@
         <%= submit_tag "accept" %>
       <% end %>
 
-    <%= button_to "Reject", {:controller => :collaborations,
-      :action => 'destroy', 
-      :id => collab }, :method => :delete %>
-    <% end %>
+      <%= form_tag destroy_collaboration_path(collab), method: :delete do %>
+        <%= hidden_field_tag :'notification[project_id]', "" %>
+        <%= hidden_field_tag :'notification[user_id]', '0' %>
+        <%= hidden_field_tag :'notification[relation]', "creator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'request' %>
+        <%= hidden_field_tag :'notification[description]', "" %>
+        <%= submit_tag "accept" %>
+      <% end %>
   </ul>
 <% end %>

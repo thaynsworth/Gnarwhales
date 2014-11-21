@@ -4,10 +4,12 @@ class CollaborationsController < ApplicationController
     @collaborations = {}
     @current_user.projects.each do |project|
       project.collaborations.each do |collab|
-        @collaborations[collab.id] = {
-          user: User.find(collab.user_id).name,
-          project: project.title,
-          status: collab.status}
+        if collab.status = "pending"
+          @collaborations[collab.id] = {
+            user: User.find(collab.user_id).name,
+            project: project.title,
+            status: collab.status}
+          end
       end
     end
   end

@@ -107,6 +107,9 @@
   <%= button_to "Leave", {:controller => :collaborations,
       :action => 'destroy', 
       :id => @collaboration.id }, :method => :delete %>
+<% elsif @user_relation = "pending" %>
+  <h2>Collaboration Request Pending</h2>
+
 <% else %>
   <%= button_to "Collaborate!", '/collaborations/create', :class => "button", 
   :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
