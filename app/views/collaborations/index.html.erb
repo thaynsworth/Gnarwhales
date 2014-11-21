@@ -9,7 +9,7 @@
         <%= hidden_field_tag :'notification[project_id]', "" %>
         <%= hidden_field_tag :'notification[user_id]', '0' %>
         <%= hidden_field_tag :'notification[relation]', "creator" %>
-        <%= hidden_field_tag :'notification[not_type]', 'request' %>
+        <%= hidden_field_tag :'notification[not_type]', 'answer' %>
         <%= hidden_field_tag :'notification[description]', "" %>
         <%= submit_tag "accept" %>
       <% end %>
@@ -17,10 +17,12 @@
       <%= form_tag destroy_collaboration_path(collab), method: :delete do %>
         <%= hidden_field_tag :'notification[project_id]', "" %>
         <%= hidden_field_tag :'notification[user_id]', '0' %>
-        <%= hidden_field_tag :'notification[relation]', "creator" %>
-        <%= hidden_field_tag :'notification[not_type]', 'request' %>
+        <%= hidden_field_tag :'notification[relation]', "collaborator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'answer' %>
         <%= hidden_field_tag :'notification[description]', "" %>
-        <%= submit_tag "accept" %>
+        <%= submit_tag "Deny" %>
       <% end %>
+
+    <% end %>
   </ul>
 <% end %>
