@@ -29,8 +29,13 @@
   <strong>User:</strong>
   <%= @project.user.name %>
 </p>
-</form action=new_comment_path method='post' >
-  <input type='textarea' />
+<form action='<%= new_comment_path %>' method='post' >
+  <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
+  </textarea>
+  <%= token_tag %>
+  <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
+  <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
+  <input type='submit' value='Comment!' />
 </form>
 <% if @comments.empty? %>
   No comments on this project yet...
@@ -38,7 +43,11 @@
   <ul>
     <% @comments.each do |comment| %>
       <li>
-        <%= comment.body %>
+        <%= User.find(comment.user_id).name %>: <%= comment.body %>
+        <%= button_to "delete", {:controller => :comments,
+      :action => 'destroy', 
+      :id => comment.id,
+      :params => {project_id: @project.id} }, :method => :delete %>
       </li>
     <% end %>
   </ul>
