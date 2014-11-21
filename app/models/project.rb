@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :collaborations
+  has_many :skills
+  has_many :contributions
 
   validates :title, :description, :start_date, :end_date, presence: true
 

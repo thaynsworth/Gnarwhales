@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :collaborations
   has_many :projects
 	validates :password, length: { minimum: 6}, on: :create
+  has_many :skills
+  has_many :contributions
 
   def collabs
     collabsArray = self.collaborations.map do |collab|
