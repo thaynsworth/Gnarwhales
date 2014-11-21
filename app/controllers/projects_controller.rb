@@ -12,8 +12,6 @@ class ProjectsController < ApplicationController
   def show
     user_relation
     @comments = @project.comments
-    binding.pry
-
   end
 
   # GET /projects/new

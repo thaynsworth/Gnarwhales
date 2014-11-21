@@ -109,7 +109,12 @@
   <%= button_to "Collaborate!", '/collaborations/create', :class => "button", 
   :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
                             :'collaboration[project_id]' => @project.id,
-                            :'collaboration[status]' => "pending"}  %>
+                            :'collaboration[status]' => "pending",
+                            :'notification[project_id]' => @project.id,
+                            :'notification[user_id]' => '0',
+                            :'notification[relation]' => "creator",
+                            :'notification[not_type]' => 'request',
+                            :'notification[description]' => "#{@current_user.name} would like to collaborate on #{@project.title}."} %>
 <% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> 

@@ -15,12 +15,21 @@ class CollaborationsController < ApplicationController
 
   def create
     new_collab = Collaboration.create(collaboration_params)
+    notif_params = notification_params
+    project = Project.find(params[:notification][:project_id])
+    creator_id = User.find(project.user_id).id
+    notif_params[:user_id] = creator_id
+    new_collab.notifications.create(notif_params)
     redirect_to project_path(params[:collaboration][:project_id])
   end
 
   def update
     collab = Collaboration.find(params[:id])
     collab.update(status: "collaborator")
+    notif_params = notification_params
+    accepted_user = User.find(collab.user_id)
+    notif_params[:user_id] = accepted_user
+    collab.notifications.create(notif_params)
     redirect_to collaborations_path
   end
 
@@ -36,4 +45,28 @@ class CollaborationsController < ApplicationController
   def collaboration_params
     params.require(:collaboration).permit(:user_id, :project_id, :status)
   end
+
+  def notification_params
+    binding.pry
+    params.require(:notification).permit(:user_id, :project_id, :not_type, :description, :relation)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

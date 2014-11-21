@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :collaborations
   has_many :skills, as: :skillable
   has_many :contributions
+  has_many :notifications
 
   validates :title, :description, :start_date, :end_date, presence: true
 

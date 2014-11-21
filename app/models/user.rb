@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6}, on: :create
   has_many :skills, as: :skillable
   has_many :contributions
+  has_many :notifications
 
   def collabs
     collabsArray = self.collaborations.map do |collab|
