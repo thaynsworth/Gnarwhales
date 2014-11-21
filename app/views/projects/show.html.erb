@@ -47,7 +47,7 @@
 </script>
 <script type="IN/Share" data-counter="right"></script>
 
-
+<!-- Sharing bar -->
 <% if @user_relation == "owner" %>
   <form action='/skills/project' method="post" >
     <select name="skill[skill]">
@@ -62,43 +62,48 @@
   </form>
 <% end %>
 
-<% if @comments.empty? %>
-  No comments on this project yet...
-<% else %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <%= comment.body %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-<% if @user_relation %>
-  <form action='<%= new_comment_path %>' method='post' >
-    <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
-    </textarea>
-    <%= token_tag %>
-    <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
-    <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
-    <input type='submit' value='Comment!' />
-  </form>
+<!-- Begin comments -->
+<% if @user_relation && @user_relation != "pending" %>
   <% if @comments.empty? %>
     No comments on this project yet...
   <% else %>
     <ul>
       <% @comments.each do |comment| %>
         <li>
-          <%= User.find(comment.user_id).name %>: <%= comment.body %>
-          <%= button_to "delete comment", {:controller => :comments,
-        :action => 'destroy', 
-        :id => comment.id,
-        :params => {project_id: @project.id} }, :method => :delete %>
+          <%= comment.body %>
         </li>
       <% end %>
     </ul>
   <% end %>
+  <% if @user_relation %>
+    <form action='<%= new_comment_path %>' method='post' >
+      <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
+      </textarea>
+      <%= token_tag %>
+      <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
+      <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
+      <input type='submit' value='Comment!' />
+    </form>
+    <% if @comments.empty? %>
+      No comments on this project yet...
+    <% else %>
+      <ul>
+        <% @comments.each do |comment| %>
+          <li>
+            <%= User.find(comment.user_id).name %>: <%= comment.body %>
+            <%= button_to "delete comment", {:controller => :comments,
+          :action => 'destroy', 
+          :id => comment.id,
+          :params => {project_id: @project.id} }, :method => :delete %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
 <% end %>
+<!-- end of comments -->
 
+<!-- Generate button based on user relationship -->
 <% if @user_relation == "owner" %>
   <%= button_to "delete project", {:controller => :projects,
       :action => 'destroy', 
@@ -121,6 +126,6 @@
                             :'notification[not_type]' => 'request',
                             :'notification[description]' => "#{@current_user.name} would like to collaborate on #{@project.title}."} %>
 <% end %>
-
+<!-- end button generation based on user relationship -->
 <%= link_to 'Edit', edit_project_path(@project) %> 
 <%= link_to 'Back', projects_path %>
