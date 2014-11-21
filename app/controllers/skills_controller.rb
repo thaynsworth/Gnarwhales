@@ -5,23 +5,21 @@ class SkillsController < ApplicationController
   end
 
   def project_create
-    skill = Skill.create(project_skill_params)
-    redirect_to project_path(params[:skill][:project_id])
+    project = Project.find(params[:project_id])
+    project.skills.create(skill_params)
+    redirect_to project_path(params[:project_id])
   end
 
   def user_create
-    skill = Skill.create(user_skill_params)
-    redirect_to user_path(params[:skill][:user_id])
+    user = User.find(params[:id])
+    user.skills.create(skill_params)
+    redirect_to user_path(params[:user_id])
   end
 
 
   private
-  def project_skill_params
-    params.require(:skill).permit(:skill, :project_id)
-  end
-
-  def user_skill_params
-    params.require(:skill).permit(:skill, :user_id)
+  def skill_params
+    params.require(:skill).permit(:skill)
   end
 
 end

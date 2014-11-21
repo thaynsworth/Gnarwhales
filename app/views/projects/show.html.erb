@@ -10,12 +10,12 @@
   <%= @project.description %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Skills Needed:</strong>
   <% @project.skills.each do |skill| %>
     <p><%= skill.skill %></p>
   <% end %>
-</p>
+</p> -->
 
 <p>
   <strong>Start date:</strong>
@@ -46,7 +46,7 @@
       <option value="whittling">whittling</option>
       <option value="barn-raising">barn-raising</option>
     </select>
-    <input type="hidden" name="skill[project_id]" value="<%= @project.id %>">
+    <input type="hidden" name="project_id" value="<%= @project.id %>">
     <%= token_tag %>
     <input type="submit">
   </form>
