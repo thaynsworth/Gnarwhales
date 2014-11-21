@@ -6,11 +6,41 @@
 </p>
 
 <p>
+  <strong>User:</strong>
+  <%= @project.user.name %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
 
-<p>
+<section class="ac-container">
+  <div>
+    <input id="ac-1" name="accordion-1" type="checkbox" />
+    <label for="ac-small">Location</label>
+    <article class="ac-small">
+      <p>Location</p>
+    </article>
+  </div>
+  <div>
+    <input id="ac-1" name="accordion-1" type="checkbox" />
+    <label for="ac-small">Location</label>
+    <article class="ac-small">
+      <p>Location</p>
+    </article>
+  </div>
+  <div>
+    <input id="ac-1" name="accordion-1" type="checkbox" />
+    <label for="ac-small">Location</label>
+    <article class="ac-small">
+      <p>Location</p>
+    </article>
+  </div>
+  
+</section>
+
+<!-- <p>
   <strong>Skills Needed:</strong>
   <% @project.skills.each do |skill| %>
     <p><%= skill.skill %></p>
@@ -31,11 +61,8 @@
   <strong>Collaborators:</strong>
   <%= @project.collaborators %>
 </p>
+ -->
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.name %>
-</p>
 
 <div class="fb-share-button" data-href="https://en.wikipedia.org/wiki/Narwhal" data-layout="button_count"></div>
 <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
