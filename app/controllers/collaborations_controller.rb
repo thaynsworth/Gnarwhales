@@ -28,8 +28,12 @@ class CollaborationsController < ApplicationController
     collab.update(status: "collaborator")
     notif_params = notification_params
     accepted_user = User.find(collab.user_id)
-    notif_params[:user_id] = accepted_user
-    collab.notifications.create(notif_params)
+    notif_params[:user_id] = accepted_user.id
+    project = Project.find(collab.project_id)
+    notif_params[:project_id] = project.id
+    notif_params[:description] = "You have been accepted to collaborate on #{project.title}!"
+    binding.pry
+    noter = collab.notifications.create(notif_params)
     redirect_to collaborations_path
   end
 
@@ -47,7 +51,6 @@ class CollaborationsController < ApplicationController
   end
 
   def notification_params
-    binding.pry
     params.require(:notification).permit(:user_id, :project_id, :not_type, :description, :relation)
   end
 end

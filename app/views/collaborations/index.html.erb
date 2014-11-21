@@ -4,26 +4,13 @@
   <ul>
     <% @collaborations.each do |collab, hash| %>
       <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.
-      <%= button_to("accept", 
-        {:'notification[project_id]' => "",
-        :'notification[user_id]' => '0',
-        :'notification[relation]' => "creator",
-        :'notification[not_type]' => 'request',
-        :'notification[description]' => ""},
-        {:id => collab,
-        :controller => :collaborations,
-        :data => {:id => collab},
-        :action => 'update',         
-        :method => :patch}
-          ) %>
-
-
+      
       <%= form_tag collaboration_path(collab), method: :patch do %>
-        <%= hidden_field_tag :'notification[project_id]' => "" %>
-        <%= hidden_field_tag :'notification[user_id]' => '0' %>
-        <%= hidden_field_tag :'notification[relation]' => "creator" %>
-        <%= hidden_field_tag :'notification[not_type]' => 'request' %>
-        <%= hidden_field_tag :'notification[description]' => "" %>
+        <%= hidden_field_tag :'notification[project_id]', "" %>
+        <%= hidden_field_tag :'notification[user_id]', '0' %>
+        <%= hidden_field_tag :'notification[relation]', "creator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'request' %>
+        <%= hidden_field_tag :'notification[description]', "" %>
         <%= submit_tag "accept" %>
       <% end %>
 
