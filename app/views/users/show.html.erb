@@ -67,7 +67,7 @@
       <option value="whittling">whittling</option>
       <option value="barn-raising">barn-raising</option>
     </select>
-    <input type="hidden" name="skill[user_id]" value="<%= @current_user.id %>">
+    <input type="hidden" name="user_id" value="<%= @current_user.id %>">
     <%= token_tag %>
     <input type="submit">
   </form>
