@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
   def update
   end
   def destroy
-    binding.pry
     comment = Comment.find(params[:id])
     comment.destroy
     redirect_to project_path(params[:project_id])

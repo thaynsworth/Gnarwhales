@@ -29,32 +29,34 @@
   <strong>User:</strong>
   <%= @project.user.name %>
 </p>
-<form action='<%= new_comment_path %>' method='post' >
-  <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
-  </textarea>
-  <%= token_tag %>
-  <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
-  <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
-  <input type='submit' value='Comment!' />
-</form>
-<% if @comments.empty? %>
-  No comments on this project yet...
-<% else %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <%= User.find(comment.user_id).name %>: <%= comment.body %>
-        <%= button_to "delete", {:controller => :comments,
-      :action => 'destroy', 
-      :id => comment.id,
-      :params => {project_id: @project.id} }, :method => :delete %>
-      </li>
-    <% end %>
-  </ul>
+<% if @user_relation %>
+  <form action='<%= new_comment_path %>' method='post' >
+    <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
+    </textarea>
+    <%= token_tag %>
+    <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
+    <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
+    <input type='submit' value='Comment!' />
+  </form>
+  <% if @comments.empty? %>
+    No comments on this project yet...
+  <% else %>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>
+          <%= User.find(comment.user_id).name %>: <%= comment.body %>
+          <%= button_to "delete comment", {:controller => :comments,
+        :action => 'destroy', 
+        :id => comment.id,
+        :params => {project_id: @project.id} }, :method => :delete %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
 
 <% if @user_relation == "owner" %>
-  <%= button_to "delete", {:controller => :projects,
+  <%= button_to "delete project", {:controller => :projects,
       :action => 'destroy', 
       :id => @project.id }, :method => :delete %>
 <% elsif @user_relation == "collaborator" %>
