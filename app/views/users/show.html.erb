@@ -1,20 +1,65 @@
 
 
-<%= link_to "Log out", logout_path, method: :delete %>
-<%= link_to 'New Project', new_project_path %>
-<li><%= link_to "Profile Settings", edit_user_path(current_user) %></li>
-<li><%= link_to "Users", users_path %></li>
 
-<h1>
-  <%= gravatar_for @user %>
+<style>
+  
+  body {
+    
+  background: url('https://img1.etsystatic.com/000/0/5206279/il_570xN.316593483.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
+}   
+
+
+
+</style>
+
+<body class="userbody">
+
+
+<center>
+<div>
+ <h1 class="name">
   <%= @user.name %>
-  <%= @user.summary %>
-  <%= @user.location %>
+ </h1>
+</center>
+
+<center>
+</div>
+ <div class="avatar">
+    <%= gravatar_for @user %>
+ </div>
+<div class="location">
+   <%= @user.location %>
+</div>
+<div class="website">
   <%= @user.website %>
+</div>
+<div>
+  <%= link_to 'New Project', new_project_path %>
+</div>
+<div>
+<%= link_to "Profile Settings", edit_user_path(current_user) %>
+</div>
+<h1>
+</center>
+ 
+ 
+ <center>
+  <div class="summary">
+    <%= @user.summary %>
+  </div>
+ </center>
+ 
+
 
 </h1>
 
-
+<center>
   <form action='/skills/user' method="post" >
     <select name="skill[skill]">
       <option value="carpentry">carpentry</option>
@@ -26,3 +71,7 @@
     <%= token_tag %>
     <input type="submit">
   </form>
+</center>
+
+
+</body>

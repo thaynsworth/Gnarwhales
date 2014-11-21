@@ -13,7 +13,18 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
   -o-background-size: cover;
   background-size: cover;
 
-}	
+}
+
+
+#userbody {
+    
+  background: url('http://th02.deviantart.net/fs71/PRE/i/2013/318/c/3/watercolor_spraypaint_abstract_painting___print__1_by_akuard-d6u92d5.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}		
 
 
 header {
@@ -66,6 +77,49 @@ header {
 	margin-top: 15px;
 	margin-left: 20px;
 	font-weight: bolder;
+}
+
+
+.name{
+	color: black;
+	font-size: 45px;
+	margin-left: 25px;
+
+}
+
+.gravatar {
+	height: 150px;
+	margin-left: 10px;
+	border: 7px solid black;
+	border-radius: 20px;
+	
+}
+
+.location{
+	color:black;
+}
+
+.website{
+	color:black;
+}
+
+.summary {
+	
+	text-align: center;
+	width: 60%;
+    height: 190px;
+	background-color: white;
+	margin-top:10px;
+	border-radius: 20px;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:30px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+
 }
 
 /*section.dashboard {

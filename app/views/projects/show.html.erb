@@ -12,8 +12,10 @@
 
 <p>
   <strong>Skills Needed:</strong>
+  <% if !@project.skills.empty? %>
   <% @project.skills.each do |skill| %>
     <p><%= skill.skill %></p>
+  <% end %>
   <% end %>
 </p>
 
