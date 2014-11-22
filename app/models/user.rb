@@ -13,13 +13,22 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum: 6}, on: :create
   has_many :skills, as: :skillable
   has_many :contributions
+  has_many :notifications
 
   def collabs
-    collabsArray = self.collaborations.map do |collab|
+    collabs_array = self.collaborations.map do |collab|
       if collab.status != "pending"
         Project.find(collab.project_id)
       end
     end
-    collabsArray
+    collabs_array
+  end
+  def pending_collabs
+    pending_collabs_array = self.collaborations.map do |collab|
+      if collab.status = "pending"
+        Project.find(collab.project_id)
+      end
+    end
+    pending_collabs_array
   end
 end

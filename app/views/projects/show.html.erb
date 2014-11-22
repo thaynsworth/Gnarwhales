@@ -1,118 +1,176 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
+<h1 id="proj-title">
+  <strong><%= @project.title %></strong>
+
+</h1>
+
+<hr>
+
+<p id="proj-owner">
+  <strong>A Project by: <%= @project.user.name %></strong>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+<!-- Generate button based on user relationship -->
+<div class="user-relation-btn">
+    <% if @user_relation == "owner" %>
+      <%= button_to "Close this Project", {:controller => :projects,
+                                           :action => 'destroy',
+                                           :id => @project.id }, :method => :delete %>
 
-<p>
-  <strong>Skills Needed:</strong>
-  <% if !@project.skills.empty? %>
-  <% @project.skills.each do |skill| %>
-    <p><%= skill.skill %></p>
-  <% end %>
-  <% end %>
-</p>
+    <% elsif @user_relation == "collaborator" %>
+      <%= button_to "Leave", {:controller => :collaborations,
+                              :action => 'destroy',
+                              :id => @collaboration.id }, :method => :delete %>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
+    <% elsif @user_relation = "pending" %>
+      <h2>Collaboration Request Pending</h2>
 
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
-
-<p>
-  <strong>Collaborators:</strong>
-  <%= @project.collaborators %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project.user.name %>
-</p>
-
-<div class="fb-share-button" data-href="https://en.wikipedia.org/wiki/Narwhal" data-layout="button_count"></div>
-<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<script src="//platform.linkedin.com/in.js" type="text/javascript">
-  lang: en_US
-</script>
-<script type="IN/Share" data-counter="right"></script>
-
-
-<% if @user_relation == "owner" %>
-  <form action='/skills/project' method="post" >
-    <select name="skill[skill]">
-      <option value="carpentry">carpentry</option>
-      <option value="design">design</option>
-      <option value="whittling">whittling</option>
-      <option value="barn-raising">barn-raising</option>
-    </select>
-    <input type="hidden" name="project_id" value="<%= @project.id %>">
-    <%= token_tag %>
-    <input type="submit">
-  </form>
-<% end %>
-
-<% if @comments.empty? %>
-  No comments on this project yet...
-<% else %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>
-        <%= comment.body %>
-      </li>
+    <% else %>
+      <%= button_to "Collaborate!", '/collaborations/create', :class => "button",
+                    :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
+                                               :'collaboration[project_id]' => @project.id,
+                                               :'collaboration[status]' => "pending",
+                                               :'notification[project_id]' => @project.id,
+                                               :'notification[user_id]' => '0',
+                                               :'notification[relation]' => "creator",
+                                               :'notification[not_type]' => 'request',
+                                               :'notification[description]' => "#{@current_user.name} would like to collaborate on #{@project.title}."} %>
     <% end %>
-  </ul>
+</div>
+<!-- end button generation based on user relationship -->
+
+<span id="main">
+  <div id="proj-pic">
+    <% if @project.image.exists? %>
+      <%= image_tag @project.image.url %>
+    <% end %>
+  </div>
+
+  <div id="proj-desc">
+    <strong>About this Project:</strong>
+    <%= @project.description %>
+  </div>
+
+  <!-- Sharing bar -->
+  <% if @user_relation == "owner" %>
+      <div id="skills-menu-title"> What Skills Are You Looking For?</div>
+      <form id="skills-menu" action='/skills/project' method="post" >
+        <select name="skill[skill]">
+          <option value="carpentry">carpentry</option>
+          <option value="design">design</option>
+          <option value="whittling">whittling</option>
+          <option value="barn-raising">barn-raising</option>
+        </select>
+        <input type="hidden" name="project_id" value="<%= @project.id %>">
+        <%= token_tag %>
+        <input type="submit" id="skills-menu">
+      </form>
+  <% end %>
+
+<!-- Begin comments -->
+<% if @user_relation && @user_relation != "pending" %>
+  <% if @user_relation %>
+    <form id="comment-field" action='<%= new_comment_path %>' method='post' >
+      <textarea rows='3' cols='10' name='comment[body]'placeholder="Add a comment..."/></textarea>
+      <%= token_tag %>
+      <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
+      <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
+      <!-- <input type='hidden' name='notification[project_id]' value='<%= @project.id %>' />
+      <input type='hidden' name='notification[user_id]' value='<%= @project.id %>' />
+      <input type='hidden' name='notification[relation]' value='<%= @project.id %>' />
+      <input type='hidden' name='notification[not_type]' value='<%= @project.id %>' />
+      <input type='hidden' name='notification[desciprtion]' value='<%= @project.id %>' />
+
+<%= hidden_field_tag :'notification[project_id]', "" %>
+        <%= hidden_field_tag :'notification[user_id]', '0' %>
+        <%= hidden_field_tag :'notification[relation]', "creator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'answer' %>
+        <%= hidden_field_tag :'notification[description]', "" %>
+  working on notifications
+  CHANGE @USER_RELATION TO CREATOR INSTEAD of OWNER TO EASILY MAP IT TO NOTIFICATION[RELATION]
+ -->
+
+      <input id="comment-submit" type='submit' value='Comment!' />
+    </form>
+
+  <span class="fb-share-button" data-href="https://en.wikipedia.org/wiki/Narwhal" data-layout="button_count"></span>
+
+  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+
+  <script>
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+
+  <script src="//platform.linkedin.com/in.js" type="text/javascript" class="linkedin-share-button">
+      lang: en_US
+  </script>
+
+  <script type="IN/Share" data-counter="right"></script>
+
+    <div id="proj-comments">
+      <% if @comments.empty? %>
+        No comments on this project yet...
+      <% else %>
+        <strong><u>PROJECT THREAD</u></strong>
+        <ul>
+          <% @comments.reverse_each do |comment| %>
+            <li class="comments">
+              <div id="comment-body">
+                  <%= button_to "X", { :controller => :comments,
+                                       :action => 'destroy',
+                                       :id => comment.id,
+                                       :params => {project_id: @project.id} },
+                                       :method => :delete %>
+              </div>
+              <%= User.find(comment.user_id).name %> @ <em>(<%= comment.created_at.to_time.strftime('%b %d %H:%M %Z') %>)</em>: <%= comment.body %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+  <% end %>
 <% end %>
-<% if @user_relation %>
-  <form action='<%= new_comment_path %>' method='post' >
-    <textarea rows='3' cols='15' name='comment[body]'/>Add a comment...
-    </textarea>
-    <%= token_tag %>
-    <input type='hidden' name='comment[user_id]' value='<%= @current_user.id %>' />
-    <input type='hidden' name='comment[project_id]' value='<%= @project.id %>' />
-    <input type='submit' value='Comment!' />
-  </form>
-  <% if @comments.empty? %>
-    No comments on this project yet...
-  <% else %>
-    <ul>
-      <% @comments.each do |comment| %>
-        <li>
-          <%= User.find(comment.user_id).name %>: <%= comment.body %>
-          <%= button_to "delete comment", {:controller => :comments,
-        :action => 'destroy', 
-        :id => comment.id,
-        :params => {project_id: @project.id} }, :method => :delete %>
-        </li>
+
+<!-- end of comments -->
+</span>
+
+<section class="ac-container">
+  <div>
+    <input id="ac-1" name="accordion-1" type="checkbox" />
+    <label for="ac-1">Location</label>
+    <article class="ac-medium">
+      <p>Location</p>
+    </article>
+  </div>
+
+  <div>
+    <input id="ac-2" name="accordion-1" type="checkbox" />
+        <label for="ac-2">Skills Involved</label>
+        <article class="ac-large">
+        </article>
+  </div>
+
+  <div>
+    <input id="ac-3" name="accordion-1" type="checkbox" />
+    <label for="ac-3">Resources</label>
+    <article class="ac-medium">
+      <p>Resources</p>
+    </article>
+  </div>
+  
+  <div>
+    <input id="ac-4" name="accordion-1" type="checkbox" />
+    <label for="ac-4"><%= @project.collaborations.count %> Collaborators</label>
+    <ul class="ac-large">
+      <%if @project.collaborations.count > 0 %>
+        <%= @project.collaborations.each do |collaboration| %> 
+        <li><%= collaboration %></li>
+        <% end %>
       <% end %>
     </ul>
-  <% end %>
-<% end %>
+  </div>
+</section>
 
-<% if @user_relation == "owner" %>
-  <%= button_to "delete project", {:controller => :projects,
-      :action => 'destroy', 
-      :id => @project.id }, :method => :delete %>
-<% elsif @user_relation == "collaborator" %>
-  <%= button_to "Leave", {:controller => :collaborations,
-      :action => 'destroy', 
-      :id => @collaboration.id }, :method => :delete %>
-<% else %>
-  <%= button_to "Collaborate!", '/collaborations/create', :class => "button", 
-  :method => :post, params: {:"collaboration[user_id]" => @current_user.id,
-                            :'collaboration[project_id]' => @project.id,
-                            :'collaboration[status]' => "pending"}  %>
-<% end %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> 
-<%= link_to 'Back', projects_path %>

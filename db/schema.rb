@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120171649) do
+ActiveRecord::Schema.define(version: 20141122053841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,21 @@ ActiveRecord::Schema.define(version: 20141120171649) do
   add_index "contributions", ["skill_id"], name: "index_contributions_on_skill_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "notificationable_id"
+    t.string   "notificationable_type"
+    t.string   "relation"
+    t.string   "not_type"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["project_id"], name: "index_notifications_on_project_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "projects", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -59,13 +74,15 @@ ActiveRecord::Schema.define(version: 20141120171649) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.string   "image_updated_at"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "skills", force: true do |t|
-    t.integer  "skillable_id"
-    t.string   "skillable_type"
     t.string   "skill"
     t.datetime "created_at"
     t.datetime "updated_at"

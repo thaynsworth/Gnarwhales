@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
   post 'collaborations/create' => 'collaborations#create'
   get 'collaborations' => 'collaborations#index', as: "collaborations"
-  delete 'collaborations/destroy/:id' => 'collaborations#destroy'
-  patch 'collaborations/update/:id' => 'collaborations#update'
+  delete'collaborations/destroy/:id' => 'collaborations#destroy', as: "destroy_collaboration"
+  patch 'collaborations/update/:id' => 'collaborations#update', as: "collaboration"
 
   post '/skills/user' => 'skills#user_create'
   post '/skills/project' => 'skills#project_create'
@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   post 'comments' => 'comments#create', as: "new_comment"
   patch 'comments' => 'comments#update'
   delete 'comments/:id' => 'comments#destroy'
+
+  post 'notifications/request' => 'notifications#request_create'
+  post 'notifications/answer' => 'notifications#answer_create'
+  post 'notifications/comment' => 'notifications#comment_create'
+  post 'notifications/deadline' => 'notifications#deadline_create'
+  post 'notifications/share' => 'notifications#share_create'
   
 
   resources :users

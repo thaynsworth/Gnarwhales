@@ -5,8 +5,11 @@ class Project < ActiveRecord::Base
   has_many :collaborations
   has_many :skills, as: :skillable
   has_many :contributions
+  has_many :notifications
+  has_attached_file :image
 
   validates :title, :description, :start_date, :end_date, presence: true
+  validates_attachment_content_type :image, :content_type => ["image/jpg","image/jpeg","image/png"]
 
   # def skill_list
   #   skills.join(", ")
