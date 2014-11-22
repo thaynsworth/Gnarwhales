@@ -5,12 +5,16 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+   
   end
+
+
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     user_relation
+    
     @comments = @project.comments
     binding.pry
 

@@ -89,10 +89,9 @@ header {
 
 .gravatar {
 	height: 150px;
-	margin-left: 10px;
+	margin-left: 50px;
 	border: 7px solid black;
 	border-radius: 20px;
-	
 }
 
 .location{
@@ -121,6 +120,86 @@ header {
 	opacity: 0.89;
 
 }
+
+
+.project {
+	float:right;
+	margin-right: 30px;
+	text-align: center;
+	width: 50%;
+    height: 50px;
+	background-color: white;
+	margin-top:10px;
+	border-radius: 20px;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:30px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+
+}
+
+
+.feed_name {
+	margin-left: 10px;
+	font-weight: bolder;
+	font-size: 30px;
+}
+
+.create {
+
+	float:left;
+   text-align: center;
+	width: 40%;
+    height: 350px;
+	background-color: white;
+	margin-top:60px;
+	border-radius: 50%;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:60px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+	margin-left: 80px;
+	line-height:320px;
+    text-align:center;
+}
+
+
+.collaberate {
+	float:right;
+   text-align: center;
+	width: 40%;
+    height: 350px;
+	background-color: white;
+	margin-top:60px;
+	border-radius: 50%;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:60px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+	margin-right: 80px;
+	line-height:320px;
+    text-align:center;
+	
+}
+
+.form-control {
+	width: 100px;
+	height: 20px;
+	display:inline;
+}
+
 
 /*section.dashboard {
 	@include outer-container;*/

@@ -11,11 +11,9 @@
 	<div class="collaborate">Collaborate</div>
 </section> -->
 <body id="body">
-<header>ProjectShare</header>
+<header>ProjectShare
 
 
-<center>
-<div id="login">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email, class: 'form-control'%>
@@ -27,8 +25,23 @@
       <%= f.submit "Log in" %>
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
+   
+  
+
+</header>
+
+<div class="create">
+  create
+</div>
+
+<div class= "collaberate">
+  collaberate
+</div>
+
+
+
+<center>
+
 </center>
 </body>
 

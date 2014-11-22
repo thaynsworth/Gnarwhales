@@ -1,6 +1,6 @@
-<h1>Listing projects</h1>
 
-<table>
+
+<!-- <table>
   <thead>
     <tr>
       <th>Title</th>
@@ -11,13 +11,18 @@
       <th>User</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+  </thead> -->
+
+    
+
 
   <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
+        
+      <a href="<%= project_path(project) %>">
+        <div class="project"><%= project.title %></div>
+      </a>
+        <!-- <td><%= project.description %></td>
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
         <td><%= project.collaborators %></td>
@@ -25,10 +30,12 @@
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      </tr> -->
     <% end %>
-  </tbody>
-</table>
+<!--   </tbody>
+</table> -->
+<div class="feed_name"><%= current_user.name %></div>
+ <%= gravatar_for current_user %>
 
 <br>
 
