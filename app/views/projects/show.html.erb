@@ -10,6 +10,8 @@
   <%= @project.user.name %>
 </p>
 
+
+
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
@@ -18,26 +20,41 @@
 <section class="ac-container">
   <div>
     <input id="ac-1" name="accordion-1" type="checkbox" />
-    <label for="ac-small">Location</label>
-    <article class="ac-small">
+    <label for="ac-1">Location</label>
+    <article class="ac-medium">
       <p>Location</p>
     </article>
   </div>
+
   <div>
-    <input id="ac-1" name="accordion-1" type="checkbox" />
-    <label for="ac-small">Location</label>
-    <article class="ac-small">
-      <p>Location</p>
+    <input id="ac-2" name="accordion-1" type="checkbox" />
+    <label for="ac-2">Skills Involved</label>
+    <article class="ac-large">
+      <% @project.skills.each do |skill| %>
+        <span><%= skill.skill %></span>
+      <% end %>
     </article>
   </div>
+
   <div>
-    <input id="ac-1" name="accordion-1" type="checkbox" />
-    <label for="ac-small">Location</label>
-    <article class="ac-small">
-      <p>Location</p>
+    <input id="ac-3" name="accordion-1" type="checkbox" />
+    <label for="ac-3">Resources</label>
+    <article class="ac-medium">
+      <p>Resources</p>
     </article>
   </div>
   
+  <div>
+    <input id="ac-4" name="accordion-1" type="checkbox" />
+    <label for="ac-4"><%= @project.collaborations.count %> Collaborators</label>
+    <ul class="ac-large">
+      <%if @project.collaborations.count > 0 %>
+        <%= @project.collaborations.each do |collaboration| %> 
+        <li><%= collaboration %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </section>
 
 <!-- <p>
