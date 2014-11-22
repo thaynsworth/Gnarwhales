@@ -2,15 +2,102 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+html {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word; /* old webkit */
+}
+
 #main {
   float: left;
   width: 50%;
   height: auto;
+  margin-left: 2em;
+}
+
+#proj-title,
+#proj-owner {
+  text-align: center;
+  margin: 1px;
+  padding: 1px;
+}
+
+#proj-title {
+  font-size: 10em;
+}
+
+#proj-owner {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+#proj-desc {
+  font-size: large;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.user-relation-btn {
+  display: block;
+  margin: 0 auto 2em auto;
+  text-align: center;
+  font: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+  font-size: x-large;
+}
+
+#skills-menu-title {
+  margin-top: 1em;
+}
+#skills-menu {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+#comment-submit,
+.fb-share-button,
+.twitter-share-button,
+.linkedin-share-button {
+  float: left;
+}
+
+.fb-share-button {
+  margin-left: 4em;
+  margin-right: 2em;
+}
+
+.twitter-share-button {
+  margin-right: 0.5em;
+}
+
+#comment-field {
+  margin-top: 3em;
+}
+
+#proj-comments {
+  margin: 5em;
+}
+
+.comments {
+  margin: 3.5em;
+}
+
+#comment-body {
+  display: block;
+  float: left;
+  margin-right: 0.5em;
 }
 
 .ac-container{
   width: 40%;
-  margin: 10px 10px 30px auto;
+  margin: 10px 30px 30px auto;
   text-align: left;
 }
 
@@ -24,8 +111,8 @@
   cursor: pointer;
   color: #777;
   text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-  line-height: 33px;
-  font-size: 19px;
+  line-height: 20px;
+  font-size: 22px;
   background: #ffffff;
   background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
@@ -34,9 +121,9 @@
   background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
   background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
-  box-shadow: 
-    0px 0px 0px 1px rgba(155,155,155,0.3), 
-    1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
+  box-shadow:
+    0px 0px 0px 1px rgba(155,155,155,0.3),
+    1px 0px 0px 0px rgba(255,255,255,0.9) inset,
     0px 2px 2px rgba(0,0,0,0.1);
 }
 .ac-container label:hover{
@@ -47,8 +134,8 @@
   background: #c6e1ec;
   color: #3d7489;
   text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
-  box-shadow: 
-    0px 0px 0px 1px rgba(155,155,155,0.3), 
+  box-shadow:
+    0px 0px 0px 1px rgba(155,155,155,0.3),
     0px 2px 2px rgba(0,0,0,0.1);
 }
 .ac-container label:hover:after,
@@ -59,10 +146,10 @@
   height: 24px;
   right: 13px;
   top: 7px;
-  background: transparent url(../images/arrow_down.png) no-repeat center center;  
+  background: transparent url('../images/arrow_down.png') no-repeat center center;
 }
 .ac-container input:checked + label:hover:after{
-  background-image: url(../images/arrow_up.png);
+  background-image: url('../images/arrow_up.png');
 }
 .ac-container input{
   display: none;

@@ -41,12 +41,10 @@ ActiveRecord::Schema.define(version: 20141122053841) do
   create_table "contributions", force: true do |t|
     t.integer  "skill_id"
     t.integer  "user_id"
-    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contributions", ["project_id"], name: "index_contributions_on_project_id", using: :btree
   add_index "contributions", ["skill_id"], name: "index_contributions_on_skill_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
@@ -83,8 +81,6 @@ ActiveRecord::Schema.define(version: 20141122053841) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "skills", force: true do |t|
-    t.integer  "skillable_id"
-    t.string   "skillable_type"
     t.string   "skill"
     t.datetime "created_at"
     t.datetime "updated_at"
