@@ -2,9 +2,11 @@
 <html>
 <head>
   <title>Gnarwhales</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
 </head>
 <body>
 
@@ -18,11 +20,20 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-<% if @current_user %>
-	<%= render partial: '/navigation_user', :locals => {user: @current_user}%>
-<% else %>
-	<%= render partial: '/navigation_non_user' unless @disable_nav %>
-<% end %>
+   <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "ProjectShare", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav pull-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Log in", '#' %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+
 
 <%= yield %>
 

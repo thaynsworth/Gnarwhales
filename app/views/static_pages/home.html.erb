@@ -10,10 +10,29 @@
 <section class='dashboard'>
 	<div class="collaborate">Collaborate</div>
 </section> -->
-<body id="body">
+<!-- <body id="body">
 <header>ProjectShare
 
 
+   
+  
+
+</header> -->
+
+
+
+<!-- <div class="create">
+  create
+</div>
+
+<div class= "collaberate">
+  collaberate
+</div> -->
+
+
+
+<!-- <center>
+  <div id="login">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email, class: 'form-control'%>
@@ -23,27 +42,13 @@
       <%= f.password_field :password, class: 'form-control'%>
 
       <%= f.submit "Log in" %>
+
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
     <% end %>
-
-   
-  
-
-</header>
-
-<div class="create">
-  create
 </div>
-
-<div class= "collaberate">
-  collaberate
-</div>
-
-
-
-<center>
 
 </center>
-</body>
+</body> -->
 
 
   <!--  <center>
@@ -52,3 +57,17 @@
 		
 	</div>
    </center> -->
+
+
+   <div class="center jumbotron">
+  <h1>Welcome to the ProjectShare</h1>
+
+  <h2>
+    This is the home page for the
+    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+    sample application.
+  </h2>
+
+  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+</div>
+
