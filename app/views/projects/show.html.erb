@@ -6,11 +6,58 @@
 </p>
 
 <p>
+  <strong>User:</strong>
+  <%= @project.user.name %>
+</p>
+
+
+
+<p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
 
-<p>
+<section class="ac-container">
+  <div>
+    <input id="ac-1" name="accordion-1" type="checkbox" />
+    <label for="ac-1">Location</label>
+    <article class="ac-medium">
+      <p>Location</p>
+    </article>
+  </div>
+
+  <div>
+    <input id="ac-2" name="accordion-1" type="checkbox" />
+    <label for="ac-2">Skills Involved</label>
+    <article class="ac-large">
+      <% @project.skills.each do |skill| %>
+        <span><%= skill.skill %></span>
+      <% end %>
+    </article>
+  </div>
+
+  <div>
+    <input id="ac-3" name="accordion-1" type="checkbox" />
+    <label for="ac-3">Resources</label>
+    <article class="ac-medium">
+      <p>Resources</p>
+    </article>
+  </div>
+  
+  <div>
+    <input id="ac-4" name="accordion-1" type="checkbox" />
+    <label for="ac-4"><%= @project.collaborations.count %> Collaborators</label>
+    <ul class="ac-large">
+      <%if @project.collaborations.count > 0 %>
+        <%= @project.collaborations.each do |collaboration| %> 
+        <li><%= collaboration %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</section>
+
+<!-- <p>
   <strong>Skills Needed:</strong>
   <% if !@project.skills.empty? %>
   <% @project.skills.each do |skill| %>
@@ -33,11 +80,8 @@
   <strong>Collaborators:</strong>
   <%= @project.collaborators %>
 </p>
+ -->
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.name %>
-</p>
 
 <div class="fb-share-button" data-href="https://en.wikipedia.org/wiki/Narwhal" data-layout="button_count"></div>
 <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
