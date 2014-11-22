@@ -2,11 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#main {
+  float: left;
+  width: 50%;
+  height: auto;
+}
+
 .ac-container{
-  width: 400px;
+  width: 40%;
   margin: 10px 10px 30px auto;
   text-align: left;
 }
+
 .ac-container label{
   font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
   padding: 5px 20px;

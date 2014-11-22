@@ -40,6 +40,10 @@ gem 'pry'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use paperclip for project images
+gem 'paperclip'
+
+# Stylez
 gem 'bitters'
 gem 'neat'
 gem 'bourbon'
