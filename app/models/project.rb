@@ -8,8 +8,13 @@ class Project < ActiveRecord::Base
   has_many :notifications
   has_attached_file :image
 
-  validates :title, :description, :start_date, :end_date, presence: true
+  validates :title, :description, :start_date, :end_date, :location, presence: true
   validates_attachment_content_type :image, :content_type => ["image/jpg","image/jpeg","image/png"]
+
+  def location_url
+    self.location.gsub(' ', '+')
+  end
+
 
   # def skill_list
   #   skills.join(", ")
