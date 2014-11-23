@@ -4,7 +4,7 @@ class CollaborationsController < ApplicationController
     @collaborations = {}
     @current_user.projects.each do |project|
       project.collaborations.each do |collab|
-        if collab.status = "pending"
+        if collab.status == "pending"
           @collaborations[collab.id] = {
             user: User.find(collab.user_id).name,
             project: project.title,
