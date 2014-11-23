@@ -33,6 +33,7 @@ class CollaborationsController < ApplicationController
     notif_params[:user_id] = accepted_user.id
     project = Project.find(collab.project_id)
     notif_params[:project_id] = project.id
+    notif_params[:relation] = "collaborator"
     notif_params[:description] = "You have been accepted to collaborate on #{project.title}!"
     collab.notifications.create(notif_params)
     redirect_to collaborations_path
@@ -41,15 +42,22 @@ class CollaborationsController < ApplicationController
   def destroy
     collaboration = Collaboration.find(params[:id])
     project = Project.find(collaboration.project_id)
+    project_creator = User.find(project.user_id)
     rejected_user = User.find(collaboration.user_id)
     collaboration.destroy
-    notif_params = notification_params
-    notif_params[:user_id] = rejected_user.id
-    notif_params[:project_id] = project.id
-    notif_params[:description] = "You have been denied your request to collaborate on #{project.title}!"
-    noter = Notification.create(notif_params)
-    binding.pry
-    redirect_to project_path(project.id)
+    if @current_user == project_creator
+      notif_params = notification_params
+      notif_params[:user_id] = rejected_user.id
+      notif_params[:project_id] = project.id
+      notif_params[:description] = "You have been denied your request to collaborate on #{project.title}!"
+      Notification.create(notif_params)
+      redirect_to project_path(project.id)
+    else
+      notif_params = notification_params
+      notif_params[:user_id] = project_creator.id
+      Notification.create(notif_params)
+      redirect_to project_path(project.id)
+    end
   end
 
   private

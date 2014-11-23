@@ -19,10 +19,16 @@
                                            :id => @project.id }, :method => :delete %>
 
     <% elsif @user_relation == "collaborator" %>
-      <%= button_to "Leave", {:controller => :collaborations,
-                              :action => 'destroy',
-                              :id => @collaboration.id }, :method => :delete %>
 
+      <%= button_to "Leave", "/collaborations/destroy/#{@collaboration.id}", :class => "button",
+                    :method => :delete, params: {:'notification[project_id]' => @project.id,
+                                               :'notification[user_id]' => '0',
+                                               :'notification[relation]' => "creator",
+                                               :'notification[not_type]' => 'Departure',
+                                               :'notification[description]' => "#{@current_user.name} has left #{@project.title}."} %>
+
+
+    
     <% elsif @user_relation == "pending" %>
       <h2>Collaboration Request Pending</h2>
 
