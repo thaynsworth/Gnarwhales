@@ -262,7 +262,7 @@ textarea {
 
 .center {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   opacity: 0.89;
 }
 
@@ -339,6 +339,14 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+.gravatar {
+	height: 150px;
+	
+	border: 7px solid black;
+	border-radius: 20px;
+	text-align: center;
 }
 
 
