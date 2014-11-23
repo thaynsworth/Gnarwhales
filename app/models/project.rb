@@ -15,6 +15,11 @@ class Project < ActiveRecord::Base
     self.location.gsub(' ', '+')
   end
 
+  def collabs
+    collabs = self.collaborations.select do |collab|
+      collab.status == "collaborator"
+    end
+  end
 
   # def skill_list
   #   skills.join(", ")
