@@ -48,7 +48,7 @@
 <script type="IN/Share" data-counter="right"></script>
 
 <!-- Sharing bar -->
-<% if @user_relation == "owner" %>
+<% if @user_relation == "creator" %>
   <form action='/skills/project' method="post" >
     <select name="skill[skill]">
       <option value="carpentry">carpentry</option>
@@ -118,7 +118,7 @@
 <!-- end of comments -->
 
 <!-- Generate button based on user relationship -->
-<% if @user_relation == "owner" %>
+<% if @user_relation == "creator" %>
   <%= button_to "delete project", {:controller => :projects,
       :action => 'destroy', 
       :id => @project.id }, :method => :delete %>

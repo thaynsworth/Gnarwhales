@@ -1,7 +1,7 @@
 module ProjectsHelper
   def user_relation
     if @current_user.projects.include?(@project)
-      @user_relation = "owner"
+      @user_relation = "creator"
     elsif @current_user.pending_collabs.include?(@project)
       @user_relation = "pending"
     elsif @current_user.collabs.include?(@project)
