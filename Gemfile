@@ -48,3 +48,5 @@ gem 'paperclip'
 gem 'bitters'
 gem 'neat'
 gem 'bourbon'
+
+gem 'dotenv-rails', :groups => [:development, :test]

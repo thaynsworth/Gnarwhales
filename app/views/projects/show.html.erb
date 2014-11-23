@@ -56,7 +56,8 @@
   <% if @user_relation == "owner" %>
       <div id="skills-menu-title"> What Skills Are You Looking For?</div>
       <form id="skills-menu" action='/skills/project' method="post" >
-        <select name="skill[skill]">
+        <select id="cd-dropdown" name="skill[skill]">
+          <option value="-1" selected>Select Skills</option>
           <option value="carpentry">carpentry</option>
           <option value="design">design</option>
           <option value="whittling">whittling</option>
@@ -64,7 +65,7 @@
         </select>
         <input type="hidden" name="project_id" value="<%= @project.id %>">
         <%= token_tag %>
-        <input type="submit" id="skills-menu">
+        <input type="submit" value="List this Skill" id="skills-menu">
       </form>
   <% end %>
 
@@ -139,9 +140,15 @@
 <section class="ac-container">
   <div>
     <input id="ac-1" name="accordion-1" type="checkbox" />
-    <label for="ac-1">Location</label>
-    <article class="ac-medium">
-      <p>Location</p>
+    <label for="ac-1">Location: <%= @project.location %></label>
+    <article class="ac-large">
+      <iframe
+      width="100%"
+      height="100%"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['maps_api'] %>
+    &q=<%= @project.location_url %>&zoom=12">
+      </iframe>
     </article>
   </div>
 
@@ -174,3 +181,6 @@
 </section>
 
 
+<script charset="utf-8">
+$('#cd-dropdown').dropdown();
+</script>
