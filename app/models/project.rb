@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
     self.location.gsub(' ', '+')
   end
 
+
   # def skill_list
   #   skills.join(", ")
   # end

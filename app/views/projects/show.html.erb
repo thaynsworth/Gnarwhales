@@ -23,7 +23,7 @@
                               :action => 'destroy',
                               :id => @collaboration.id }, :method => :delete %>
 
-    <% elsif @user_relation = "pending" %>
+    <% elsif @user_relation == "pending" %>
       <h2>Collaboration Request Pending</h2>
 
     <% else %>
@@ -113,6 +113,45 @@
       <% if @comments.empty? %>
         No comments on this project yet...
       <% else %>
+          <h2 id="comment-head"><strong><u>PROJECT THREAD</u></strong></h2>
+
+          <ul class="timeline">
+            <% @comments.reverse_each do |comment| %>
+            <% if @user_relation == "owner" %>
+                <div id="comment-body">
+                  <%= button_to "X", {  :controller => :comments,
+                                        :action => 'destroy',
+                                        :id => comment.id,
+                                        :params => {project_id: @project.id} },
+                                        :method => :delete %>
+                </div>
+            <% end %>
+
+            <li class="event">
+
+              <input type="radio" name="tl-group"/>
+              <label></label>
+              <div class="thumb avatar" id="comment-avatar"> <%= gravatar_for comment.user %>
+                <span id="comment-time"><em><%= comment.created_at.to_time.strftime('%b %d %H:%M %Z') %></em></span>
+              </div>
+
+              <div class="content-perspective">
+                <div class="content">
+                  <div class="content-inner">
+                    <h3><%= User.find(comment.user_id).name %></h3>
+                    <p><%= comment.body %></p>
+                  </div>
+                </div>
+              </div>
+
+            </li>
+            <% end %>
+          </ul>
+
+
+          <hr/>
+
+
         <strong><u>PROJECT THREAD</u></strong>
         <ul>
           <% @comments.reverse_each do |comment| %>
@@ -166,17 +205,19 @@
       <p>Resources</p>
     </article>
   </div>
-  
+
   <div>
     <input id="ac-4" name="accordion-1" type="checkbox" />
     <label for="ac-4"><%= @project.collaborations.count %> Collaborators</label>
-    <ul class="ac-large">
-      <%if @project.collaborations.count > 0 %>
-        <%= @project.collaborations.each do |collaboration| %> 
-        <li><%= collaboration %></li>
-        <% end %>
-      <% end %>
-    </ul>
+    <article class="ac-medium">
+        <ul class="ac-large">
+          <%if @project.collaborations.count > 0 %>
+            <%= @project.collaborations.each do |collaboration| %>
+                <li><%= collaboration.user[:name] %></li>
+            <% end %>
+          <% end %>
+        </ul>
+    </article>
   </div>
 </section>
 
