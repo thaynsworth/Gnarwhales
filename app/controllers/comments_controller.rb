@@ -16,6 +16,11 @@ class CommentsController < ApplicationController
       end
     else
       # Collaborator made the comment
+      pro_creator = User.find(project.user_id)
+      creator_notif = notif_params
+      creator_notif[:user_id] = pro_creator.id
+      creator_notif[:relation] = "creator"
+      new_comment.notifications.create(creator_notif)
     end
     binding.pry
     redirect_to project_path(params[:comment][:project_id])

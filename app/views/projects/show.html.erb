@@ -87,8 +87,7 @@
       <input type='hidden' name='notification[user_id]' value='<%= @current_user.id %>' />
       <input type='hidden' name='notification[project_id]' value='<%= @project.id %>' />
       <input type='hidden' name='notification[not_type]' value='comment' />
-      <!-- Description to be filled in after parameters -->
-      <input type='hidden' name='notification[description]' value='temp' />
+      <input type='hidden' name='notification[description]' value='<%= @current_user.name %> commented on <%= @project.title %>' />
       <!-- Relation to be filled in after parameters -->
       <input type='hidden' name='notification[relation]' value='temp' />
       <input type='submit' value='Comment!' />
