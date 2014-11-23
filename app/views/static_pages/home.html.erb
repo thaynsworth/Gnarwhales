@@ -1,41 +1,21 @@
+<style>
+  
+  body {
+    
+  background: url('http://christineadolph.typepad.com/.a/6a00d834528ff369e20120a93e7120970b-pi') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}   
+</style>
 
 
-<!-- <section>
-	<div class="create">Create</div>
-	<div class="elevator-pitch">
-		<p>ProjectShare is a network for project instigators who have goals but need resources. It connects Instiagtors & Collaborators and helps groups organize their projects. Unlike Kickstarter, we want your time not money.. :)</p>
-	</div>	
-</section> -->
-<!-- 
-<section class='dashboard'>
-	<div class="collaborate">Collaborate</div>
-</section> -->
-<body id="body">
-<header>ProjectShare</header>
+<div class="center jumbotron">
+  <h1>Welcome to ProjectShare</h1> 
+   <h2>
+    ProjectShare is a network for project instigators who have goals but need resources. It connects Instiagtors & Collaborators and helps groups organize their projects. Unlike Kickstarter, we want your time not money
+  </h2>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
 
-
-<center>
-<div id="login">
-    <%= form_for(:session, url: login_path) do |f| %>
-
-      <%= f.label :email, class: 'form-control'%>
-      <%= f.text_field :email, class: 'form-control'%>
-
-      <%= f.label :password, class: 'form-control' %>
-      <%= f.password_field :password, class: 'form-control'%>
-
-      <%= f.submit "Log in" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
-</center>
-</body>
-
-
-  <!--  <center>
-	<div class="elevator-pitch"> 
-		<p>ProjectShare is a network for project instigators who have goals but need resources. It connects Instiagtors & Collaborators and helps groups organize their projects. Unlike Kickstarter, we want your time not money</p>
-		
-	</div>
-   </center> -->

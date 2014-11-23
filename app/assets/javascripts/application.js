@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require bootstrap/collapse
+
+
+$(document).ready(function () {
+$(".navbar-nav li a").click(function(event) {
+$(".navbar-collapse").collapse('hide');
+});
+});

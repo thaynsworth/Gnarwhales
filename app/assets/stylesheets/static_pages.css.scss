@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
+/*html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
 
 
 #body {
@@ -89,10 +89,9 @@ header {
 
 .gravatar {
 	height: 150px;
-	margin-left: 10px;
+	margin-left: 50px;
 	border: 7px solid black;
 	border-radius: 20px;
-	
 }
 
 .location{
@@ -121,6 +120,82 @@ header {
 	opacity: 0.89;
 
 }
+
+
+.project {
+	float:right;
+	margin-right: 30px;
+	text-align: center;
+	width: 50%;
+    height: 50px;
+	background-color: white;
+	margin-top:10px;
+	border-radius: 20px;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:30px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+
+}
+
+
+.feed_name {
+	margin-left: 10px;
+	font-weight: bolder;
+	font-size: 30px;
+}
+
+.create {
+
+	float:left;
+   text-align: center;
+	width: 40%;
+    height: 350px;
+	background-color: white;
+	margin-top:60px;
+	border-radius: 50%;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:60px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+	margin-left: 80px;
+	line-height:320px;
+    text-align:center;
+}
+
+
+.collaberate {
+	float:right;
+   text-align: center;
+	width: 40%;
+    height: 350px;
+	background-color: white;
+	margin-top:60px;
+	border-radius: 50%;
+	border: 7px solid black;
+	font-family: helvetica;
+	font-style: bold;
+	color:black;
+	font-size:60px;
+	white-space: normal;
+	overflow:overlay;
+	opacity: 0.89;
+	margin-right: 80px;
+	line-height:320px;
+    text-align:center;
+	
+}
+
+*/
+
 
 /*section.dashboard {
 	@include outer-container;*/
@@ -163,3 +238,149 @@ header {
 	}
 }
 */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  margin-top: 40px;
+  opacity: 0.89;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+.gravatar {
+	height: 150px;
+	margin-top: 10px;
+	border: 7px solid white;
+	border-radius: 20px;
+	text-align: center;
+}
+
+
+
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
