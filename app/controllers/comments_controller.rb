@@ -21,6 +21,16 @@ class CommentsController < ApplicationController
       creator_notif[:user_id] = pro_creator.id
       creator_notif[:relation] = "creator"
       new_comment.notifications.create(creator_notif)
+      project.collabs.each do |collab|
+        if collab.user_id != commenter.id
+          temp_params = notif_params
+          notified_user = User.find(collab.user_id)
+          temp_params[:description] = "#{commenter.name} commented on #{project.title}."
+          temp_params[:user_id] = notified_user.id
+          temp_params[:relation] = "collaborator"
+          new_comment.notifications.create(temp_params)
+        end
+      end
     end
     binding.pry
     redirect_to project_path(params[:comment][:project_id])
