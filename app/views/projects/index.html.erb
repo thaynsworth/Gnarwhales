@@ -16,11 +16,12 @@
     
 
 
+
   <tbody>
     <% @projects.each do |project| %>
         
       <a href="<%= project_path(project) %>">
-        <div class="project"><%= project.title %></div>
+        <div class="center jumbotron"><h1><%= project.title %></h1></div>
       </a>
         <!-- <td><%= project.description %></td>
         <td><%= project.start_date %></td>
@@ -34,9 +35,3 @@
     <% end %>
 <!--   </tbody>
 </table> -->
-<div class="feed_name"><%= current_user.name %></div>
- <%= gravatar_for current_user %>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
