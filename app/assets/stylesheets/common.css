@@ -114,6 +114,13 @@
 .profile-header {
 	border: 3px solid black;
 	margin: 10px;
+	border-radius: 200px;
+	background-color: lightgrey;
+}
+
+.profile-summary {
+	font-size: 20px;
+	padding-bottom: 10px;
 }
 
 .profile-skills {
@@ -122,6 +129,13 @@
 	height: 300px;
 	float: left;
 	margin: 10px;
+	border-radius: 25px;
+	padding-left: 30px;
+	background-color: lightgrey;
+}
+
+.profile-skills-button {
+	width: 200px;
 }
 
 .profile-info {
@@ -130,6 +144,9 @@
 	height: 300px;
 	float: right;
 	margin: 10px;
+	border-radius: 25px;
+	padding-left: 30px;
+	background-color: lightgrey;
 }
 
 
@@ -137,6 +154,9 @@
 	border: 3px solid black;
 	clear: left;
 	margin: 10px;
+	border-radius: 25px;
+	text-align: center;
+	background-color: lightgrey;
 }
 
 

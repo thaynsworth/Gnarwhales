@@ -8,7 +8,7 @@
     <div>
       <h1><%= @user.name %></h1>
     </div>
-    <div>
+    <div class="profile-summary">
       <%= @user.summary %>
     </div>
   </center>
@@ -24,8 +24,8 @@
       <% end %>
     </ul>
     <% if @user == current_user %>
-      <div>Enter Skills:</div>
-        <form action='/skills/user/<%= @current_user.id %>' method="post" >
+      <div>Add Skills:</div>
+        <form class="profile-skills-button"action='/skills/user/<%= @current_user.id %>' method="post" >
           <input type="text" name="skill[skill]" placeholder="Enter Skill">
           <input type="hidden" name="user_id" value="<%= @current_user.id %>">
           <%= token_tag %>
@@ -62,14 +62,16 @@
   <% else %>
     <% nil %>
   <% end %>
-  <div>Projects:</div>
+  <div>
     <ul>
       <% @user.projects.each do |project|%>
         <li>
-        <%= project.title  %>
+          <a href="<%= project_path(project) %>">
+          <%= project.title  %>
         </li>
       <% end %>
     </ul>
+  </div>
 </div>
 
 
