@@ -16,4 +16,3 @@
 /tmp
 
 # Ignore .env files.
-/.env
