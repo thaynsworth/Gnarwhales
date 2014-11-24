@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   get 'users/new'
 
-  
+
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
-  
+
   get 'signup' => 'users#new'
 
   get    'login'   => 'sessions#new'
@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   delete'collaborations/destroy/:id' => 'collaborations#destroy', as: "destroy_collaboration"
   patch 'collaborations/update/:id' => 'collaborations#update', as: "collaboration"
 
-  post '/skills/user' => 'skills#user_create'
+  post '/skills/user/:id' => 'skills#user_create'
   post '/skills/project' => 'skills#project_create'
-  
+
   post 'comments' => 'comments#create', as: "new_comment"
   patch 'comments' => 'comments#update'
   delete 'comments/:id' => 'comments#destroy'
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post 'notifications/comment' => 'notifications#comment_create'
   post 'notifications/deadline' => 'notifications#deadline_create'
   post 'notifications/share' => 'notifications#share_create'
-  
+
 
   resources :users
   resources :projects
