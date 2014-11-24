@@ -32,7 +32,6 @@ class CommentsController < ApplicationController
         end
       end
     end
-    binding.pry
     redirect_to project_path(params[:comment][:project_id])
   end
   def update

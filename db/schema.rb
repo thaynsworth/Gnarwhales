@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123034126) do
+ActiveRecord::Schema.define(version: 20141124031919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,12 @@ ActiveRecord::Schema.define(version: 20141123034126) do
   create_table "contributions", force: true do |t|
     t.integer  "skill_id"
     t.integer  "user_id"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "contributions", ["project_id"], name: "index_contributions_on_project_id", using: :btree
   add_index "contributions", ["skill_id"], name: "index_contributions_on_skill_id", using: :btree
   add_index "contributions", ["user_id"], name: "index_contributions_on_user_id", using: :btree
 
@@ -82,10 +84,21 @@ ActiveRecord::Schema.define(version: 20141123034126) do
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "skills", force: true do |t|
+    t.integer  "skillable_id"
+    t.string   "skillable_type"
     t.string   "skill"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "updates", force: true do |t|
+    t.integer  "project_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "updates", ["project_id"], name: "index_updates_on_project_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

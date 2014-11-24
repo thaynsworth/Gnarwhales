@@ -5,10 +5,6 @@ class StaticPagesController < ApplicationController
 
   def notifications 
   	@notifications = @current_user.notifications
-  
-
-
-
     @collaborations = {}
     @current_user.projects.each do |project|
       project.collaborations.each do |collab|
@@ -20,8 +16,7 @@ class StaticPagesController < ApplicationController
           end
       end
     end
-end
-
+  end
 
 
 end

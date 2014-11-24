@@ -43,6 +43,7 @@ class CollaborationsController < ApplicationController
     collaboration = Collaboration.find(params[:id])
     project = Project.find(collaboration.project_id)
     project_creator = User.find(project.user_id)
+    alter_notif = Notification.find(collaboration.notifications[0].id)
     rejected_user = User.find(collaboration.user_id)
     collaboration.destroy
     if @current_user == project_creator
@@ -51,6 +52,7 @@ class CollaborationsController < ApplicationController
       notif_params[:project_id] = project.id
       notif_params[:description] = "You have been denied your request to collaborate on #{project.title}!"
       Notification.create(notif_params)
+      alter_notif.update(description: "#{rejected_user.name}'s collaboration request was denied.")
       redirect_to project_path(project.id)
     else
       notif_params = notification_params
