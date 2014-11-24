@@ -15,7 +15,7 @@
 </div>
 
 <div class="profile-skills">
-  <h1>My Skills</h1>
+  <h1>Skills</h1>
     <ul>
       <% @user.skills.each do |skill|%>
         <li>
@@ -23,17 +23,21 @@
         </li>
       <% end %>
     </ul>
-  <div>Enter Skills:</div>
-    <form action='/skills/user/<%= @current_user.id %>' method="post" >
-      <input type="text" name="skill[skill]" placeholder="Enter Skill">
-      <input type="hidden" name="user_id" value="<%= @current_user.id %>">
-      <%= token_tag %>
-      <input type="submit">
-    </form> 
+    <% if @user == current_user %>
+      <div>Enter Skills:</div>
+        <form action='/skills/user/<%= @current_user.id %>' method="post" >
+          <input type="text" name="skill[skill]" placeholder="Enter Skill">
+          <input type="hidden" name="user_id" value="<%= @current_user.id %>">
+          <%= token_tag %>
+          <input type="submit">
+        </form> 
+      <% else %>
+        <% nil %>
+       <% end %> 
 </div>
 
 <div class="profile-info">
-  <h1>My Information</h1>
+  <h1>Information</h1>
   <div>
      <%= @user.location %>
   </div>
@@ -41,16 +45,24 @@
     <%= @user.website %>
   </div>
   <div>
-    <%= link_to "Edit Information", edit_user_path(current_user) %>
+    <% if @user == current_user %>
+      <%= link_to "Edit Information", edit_user_path(current_user) %>
+      <% else %>
+      <% nil %>
+    <% end %>
   </div>
 </div>
 
 <div class="profile-projects">
   <h1>Projects</h1>
-  <div>
-    <%= link_to 'New Project', new_project_path %>
-  </div>
-  <div>My Projects:</div>
+  <% if @user == current_user %>
+    <div>
+      <%= link_to 'New Project', new_project_path %>
+    </div>
+  <% else %>
+    <% nil %>
+  <% end %>
+  <div>Projects:</div>
     <ul>
       <% @user.projects.each do |project|%>
         <li>
