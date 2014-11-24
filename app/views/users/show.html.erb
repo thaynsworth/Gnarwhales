@@ -36,9 +36,10 @@ h1 {
 
 
 <center>
-<div> 
 
+<div> 
     <div class="title">
+    <div>
       <h1 class="name">
         <%= @user.name %>
       </h1>
@@ -86,21 +87,15 @@ h1 {
 </div>
 </h1>
 
-<center>
-  <div class="skills">
-  <form action='/skills/user' method="post" >
-    <select name="skill[skill]">
-      <option value="carpentry">carpentry</option>
-      <option value="design">design</option>
-      <option value="whittling">whittling</option>
-      <option value="barn-raising">barn-raising</option>
-    </select>
+<center> 
+  <div>What Skills Do You Have?</div>
+  <form action='/skills/user/<%= @current_user.id %>' method="post" >
+    <input type="text" name="skill[skill]" placeholder="Enter Skill">
     <input type="hidden" name="user_id" value="<%= @current_user.id %>">
     <%= token_tag %>
     <input type="submit">
-  </form>
-</div>
-</center> 
+  </form> 
+</center>
 
 
 </body>
