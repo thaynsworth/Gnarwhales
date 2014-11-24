@@ -1,27 +1,12 @@
-
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Collaborators</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead> -->
 <style>
-  
-  body {
+/*body {
     
   background: url('https://img0.etsystatic.com/006/0/6642419/il_fullxfull.359244928_m4n3.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}   
+}*/   
 
 
 .center {
@@ -34,6 +19,7 @@
   color:white;
   opacity: 0.80;
   margin-top: 20px;
+  margin-bottom: 20px;
   height: 50px;
 }
 </style>
@@ -41,25 +27,34 @@
 <div class="title">
 <h1>Projects From Around The World</h1>
 </div>
+
+<div class="letters">
+  <% @letters.each do |letter| %>
+    <a class="jumper" href="#<%= letter %>"><%= letter %></a>
+  <% end %>
+</div>
+
+<ul class="users">
+<% @projects.keys.sort.each do |starting_letter| %>
+  <% @projects[starting_letter].each do |project| %>
+    <p class="project-idx">
+      <%= image_tag project.image.url %>
+      <span id="proj-link"><%= link_to project.title, project %></span>
+    </p>
+  <% end %>
+<% end %>
+</ul>
+
+<script>
+  
+$(".jumper").on("click", function( e ) {
     
+    e.preventDefault();
 
+    $("body, html").animate({ 
+        scrollTop: $( $(this).attr('href') ).offset().top 
+    }, 600);
+    
+});
 
-
-  <tbody>
-    <% @projects.each do |project| %>
-        
-      <a href="<%= project_path(project) %>">
-        <div class="center jumbotron"><h1><%= project.title %></h1></div>
-      </a>
-        <!-- <td><%= project.description %></td>
-        <td><%= project.start_date %></td>
-        <td><%= project.end_date %></td>
-        <td><%= project.collaborators %></td>
-        <td><%= project.user %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr> -->
-    <% end %>
-<!--   </tbody>
-</table> -->
+</script>
