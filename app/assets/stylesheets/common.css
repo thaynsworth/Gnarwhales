@@ -111,6 +111,31 @@
 	text-align: center;
 }
 
+.profile-header {
+	border: 3px solid black;
+}
+
+.profile-skills {
+	border: 3px solid black;
+	width: 50%;
+	height: 300px;
+	float: left;
+}
+
+.profile-info {
+	border: 3px solid black;
+	width: 50%;
+	height: 300px;
+	float: right;
+
+}
+
+
+.profile-projects {
+	border: 3px solid black;
+	clear: left;
+}
+
 
 
 

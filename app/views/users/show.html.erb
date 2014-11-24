@@ -1,101 +1,52 @@
 
-<style>
 
-.center{
-  margin-top: 10px;
-  background-color: black;
-  color:white;
-  
-
-
-}
-
-h1 {
-  font-size: 40px;
-  margin-top: 10px;
-}
-
-.title {
-  background: black;
-  color:white;
-  opacity: 0.80;
-  margin-top: 20px;
-  height: 50px;
-  
-}
-
-.skills {
-  width: 50%
-}
-</style>
-
-
-
-
-
-
-
-<center>
-
-<div> 
-    <div class="title">
+<div class="profile-header">
+  <center>
     <div>
-      <h1 class="name">
-        <%= @user.name %>
-      </h1>
+      <%= gravatar_for @user %>
     </div>
+    <div>
+      <h1><%= @user.name %></h1>
+    </div>
+    <div>
+      <%= @user.summary %>
+    </div>
+  </center>
+</div>
+
+<div class="profile-skills">
+  <h1>My Skills</h1>
+    <p>Skills list here</p>
+  <div>Enter Skills:</div>
+    <form action='/skills/user/<%= @current_user.id %>' method="post" >
+      <input type="text" name="skill[skill]" placeholder="Enter Skill">
+      <input type="hidden" name="user_id" value="<%= @current_user.id %>">
+      <%= token_tag %>
+      <input type="submit">
+    </form> 
+</div>
+
+<div class="profile-info">
+  <h1>My Information</h1>
+  <div>
+     <%= @user.location %>
   </div>
-</center>
-   
-<center>
-<div class="center jumbotron">
-<div class="avatar">
- <center>
-    <%= gravatar_for @user %>
- </center>
-</div>
-
-
-
-
- 
-<center>
-<div class="location">
-   <%= @user.location %>
-</div>
-
-<div class="website">
-  <%= @user.website %>
-</div>
-<div>
-  <%= link_to 'New Project', new_project_path %>
-</div>
-<div>
-<%= link_to "Profile Settings", edit_user_path(current_user) %>
-</div>
-<h1>
-</center>
- 
- 
- <center>
-  <div class="summary">
-    <%= @user.summary %>
+  <div>
+    <%= @user.website %>
   </div>
- </center>
- 
+  <div>
+    <%= link_to "Profile Settings", edit_user_path(current_user) %>
+  </div>
 </div>
+
+<div class="profile-projects">
+  <h1>Projects</h1>
+  <div>
+    <%= link_to 'New Project', new_project_path %>
+  </div>
+  <div>My Projects:</div>
+    <p>Projects list here</p>
 </div>
-</h1>
-
-<center> 
-  <div>What Skills Do You Have?</div>
-  <form action='/skills/user/<%= @current_user.id %>' method="post" >
-    <input type="text" name="skill[skill]" placeholder="Enter Skill">
-    <input type="hidden" name="user_id" value="<%= @current_user.id %>">
-    <%= token_tag %>
-    <input type="submit">
-  </form> 
-</center>
 
 
-</body>
+
