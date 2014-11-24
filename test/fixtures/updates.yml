@@ -1,9 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+<<<<<<< HEAD
   project_id: 
   body: MyText
 
 two:
   project_id: 
   body: MyText
+=======
+  body: MyText
+  user_id: 
+  project_id: 
+
+two:
+  body: MyText
+  user_id: 
+  project_id: 
+>>>>>>> updates

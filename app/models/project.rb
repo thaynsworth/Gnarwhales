@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :skills, as: :skillable
   has_many :contributions
   has_many :notifications
+  has_many :updates
   has_attached_file :image
 
   validates :title, :description, :start_date, :end_date, :location, presence: true
