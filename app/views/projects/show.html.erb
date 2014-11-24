@@ -60,14 +60,46 @@
 
   <!-- Sharing bar -->
   <% if @user_relation == "creator" %>
-      <div id="skills-menu-title"> What Skills Are You Looking For?</div>
-      <form id="skills-menu" action='/skills/project' method="post" >
+      <div id="skills-input-title"> What Skills Are You Looking For?</div>
+      <form id="skills-input" action='/skills/project' method="post" >
         <input type="text" name="skill[skill]" placeholder="Enter Skill">
         <input type="hidden" name="project_id" value="<%= @project.id %>">
         <%= token_tag %>
         <input type="submit" value="List this Skill" id="skills-menu">
       </form>
+
+      <div id="updates-input-title"> Post Your Project Updates</div>
+      <form id="updates-input" action='/updates/project' method="post" >
+        <input type="text" name="update[body]" placeholder="Your Project's Update">
+        <input type="hidden" name="project_id" value="<%= @project.id %>">
+        <input type="hidden" name="user_id" value="<%= @project.user.id %>">
+        <%= token_tag %>
+        <input type="submit" value="Post an Updates" id="skills-menu">
+      </form>
+
   <% end %>
+
+<strong><u>PROJECT UPDATES</u></strong>
+<% if @update.id == nil %>
+  This project has no updates yet.
+<% else %>
+  <ul>
+    <% @updates.reverse_each do |update| %>
+      <li class="updates">
+        <div>
+          <% if @user_relation == "creator" %>
+            <%= button_to "X", { :controller => :updates,
+                                 :action => 'destroy',
+                                 :id => update.id,
+                                 :params => {project_id: @project.id} },
+                                 :method => :delete %>
+          <% end %>
+        </div>
+        <%= User.find(update.user_id).name %> @ <em>(<%= update.created_at.to_time.strftime('%b %d') %>)</em>: <%= update.body %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <!-- Begin comments -->
 <% if @user_relation && @user_relation != "pending" %>

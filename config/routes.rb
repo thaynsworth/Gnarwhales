@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   patch 'comments' => 'comments#update'
   delete 'comments/:id' => 'comments#destroy'
 
-
   post 'notifications/request' => 'notifications#request_create'
   post 'notifications/answer' => 'notifications#answer_create'
   post 'notifications/comment' => 'notifications#comment_create'
@@ -36,7 +35,9 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :projects
+  resources :projects do
+    resources :updates
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
