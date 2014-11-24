@@ -206,8 +206,8 @@
     <label for="ac-4"><%= @project.collabs.count %> Collaborators</label>
     <article class="ac-medium">
         <ul class="ac-large">
-          <%if @project.collaborations.count > 0 %>
-            <%= @project.collaborations.each do |collaboration| %>
+          <%if @project.collabs.count > 0 %>
+            <%= @project.collabs.each do |collaboration| %>
                 <li><%= collaboration.user[:name] %></li>
             <% end %>
           <% end %>
