@@ -23,16 +23,14 @@
         </li>
       <% end %>
     </ul>
-    <% if @user == current_user %>
+    <% if @user == @current_user %>
       <div>Add Skills:</div>
         <form class="profile-skills-button"action='/skills/user/<%= @current_user.id %>' method="post" >
           <input type="text" name="skill[skill]" placeholder="Enter Skill">
           <input type="hidden" name="user_id" value="<%= @current_user.id %>">
           <%= token_tag %>
           <input type="submit">
-        </form> 
-      <% else %>
-        <% nil %>
+        </form>
        <% end %> 
 </div>
 
@@ -59,12 +57,10 @@
     <div>
       <%= link_to 'New Project', new_project_path %>
     </div>
-  <% else %>
-    <% nil %>
   <% end %>
   <div>
     <ul>
-      <% @user.projects.each do |project|%>
+      <% @user.projects.each do |project| %>
         <li>
           <a href="<%= project_path(project) %>">
           <%= project.title  %>
@@ -72,6 +68,22 @@
       <% end %>
     </ul>
   </div>
+  <% if !@my_projects.empty? && @current_user != @user%>
+    <form action='/collaborations/create' method='post' >
+      <%= token_tag %>
+      <select name='collaboration[project_id]'>
+        <% @my_projects.each do |proj| %>
+          <option value='<%= proj.id %>'><%= proj.title %></option>
+        <% end %>
+      </select>
+      <input type='hidden' name='collaboration[user_id]' value='<%= @user.id %>' />
+      <input type='hidden' name='collaboration[status]' value='invited' />
+      <input type='hidden' name='notification[user_id]' value='<%= @user.id %>' />
+      <input type='hidden' name='notification[not_type]' value='request' />
+      <input type='hidden' name='notification[relation]' value='collaborator' />
+      <input type='submit' />
+    </form>
+  <% end %>
 </div>
 
 

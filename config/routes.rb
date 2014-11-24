@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   root 'static_pages#home'
 
-  post 'collaborations/create' => 'collaborations#create'
+  post 'collaborations/create' => 'collaborations#create', as: "new_collaboration"
   get 'collaborations' => 'collaborations#index', as: "collaborations"
   delete'collaborations/destroy/:id' => 'collaborations#destroy', as: "destroy_collaboration"
   patch 'collaborations/update/:id' => 'collaborations#update', as: "collaboration"
@@ -31,11 +31,6 @@ Rails.application.routes.draw do
   patch 'updates/project' => 'updates#update'
   delete 'updates/:id' => 'updates#destroy'
 
-  post 'notifications/request' => 'notifications#request_create'
-  post 'notifications/answer' => 'notifications#answer_create'
-  post 'notifications/comment' => 'notifications#comment_create'
-  post 'notifications/deadline' => 'notifications#deadline_create'
-  post 'notifications/share' => 'notifications#share_create'
 
 
   resources :users
