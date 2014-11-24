@@ -3,9 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-  	users = User.all
-    grouped_users = users.group_by {|user| user.name[0].upcase }
-    @user_list = grouped_users.sort_by{|k, v| k}
+    @users = User.all.group_by{|u| u.name[0]}
+    @letters = ("A".."Z").to_a
 
   end
 

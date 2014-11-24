@@ -1,11 +1,18 @@
 <h1>All users</h1>
 
+<% @letters.each do |letter| %>
+	<a class="jumper" href="#<%= letter %>"><%= letter %></a>
+<% end %>
+
 <ul class="users">
-  <% @user_list.each do |initial_letter, user| %>
-    <li>
-    	<%= initial_letter %>
-      <%= gravatar_for user %>
-      <%= link_to user.name, user %>
-    </li>
+<% @users.keys.sort.each do |starting_letter| %>
+  <div id="<%= starting_letter %>"><%= starting_letter %></div>
+  <% @users[starting_letter].each do |user| %>
+		
+    <p>
+    	<%= gravatar_for user %>
+    	<%= link_to user.name, user %>
+    </p>
   <% end %>
+<% end %>
 </ul>
