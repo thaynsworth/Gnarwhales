@@ -1,5 +1,5 @@
 <style>
-	.collaberations{
+	.pending_collaborations{
 		float:right;
 		margin-right: 80px;
 		background-color: lightgrey;
@@ -15,6 +15,12 @@
 		margin-left: 80px;
 
 	}
+
+	li {
+		margin-top: 10px;
+	}
+
+	
 </style>
 
 
@@ -26,26 +32,28 @@
 
 
 <div class="notifications">
-	<strong>NOTIFICATIONS</strong>
-<ul>
+	<strong>Notifications</strong>
 	<% @notifications.each do |notif| %>
-       <li><h1><%=notif.description%></h1></li>
-
+	  
+		<ul>
+			<li>
+       <h1><%=notif.description%></h1> 
+           <li>
+       <ul>
+       
+   
 	<%end%>
-</ul>
+
 </div>
 
 
- <div class="collaberations">
- 	<strong>REQUESTS</strong>
-<% if @collaborations.empty? %>
-  
+ <div class="pending_collaborations">
+<% if @pending_collaborations.empty? %>  
   <h2>No pending Collaboration requests.</h2>
 <% else %>
   <ul>
-    <% @collaborations.each do |collab, hash| %>
-      <h1><%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.</h1>
-      
+    <% @pending_collaborations.each do |collab, hash| %>
+      <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.      
       <%= form_tag collaboration_path(collab), method: :patch do %>
         <%= hidden_field_tag :'notification[project_id]', "" %>
         <%= hidden_field_tag :'notification[user_id]', '0' %>
