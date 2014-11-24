@@ -3,12 +3,17 @@
 		float:right;
 		margin-right: 80px;
 		background-color: lightgrey;
+        width: 40%
+
        
 	}
 
 	.notifications{
 		float: left;
 		background: lightgrey;
+		width: 40%;
+		margin-left: 80px;
+
 	}
 </style>
 
@@ -21,9 +26,10 @@
 
 
 <div class="notifications">
+	<strong>NOTIFICATIONS</strong>
 <ul>
 	<% @notifications.each do |notif| %>
-       <li><%=notif.description%></li>
+       <li><h1><%=notif.description%></h1></li>
 
 	<%end%>
 </ul>
@@ -31,13 +37,14 @@
 
 
  <div class="collaberations">
+ 	<strong>REQUESTS</strong>
 <% if @collaborations.empty? %>
   
   <h2>No pending Collaboration requests.</h2>
 <% else %>
   <ul>
     <% @collaborations.each do |collab, hash| %>
-      <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.
+      <h1><%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.</h1>
       
       <%= form_tag collaboration_path(collab), method: :patch do %>
         <%= hidden_field_tag :'notification[project_id]', "" %>
