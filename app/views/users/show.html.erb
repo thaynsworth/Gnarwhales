@@ -16,7 +16,13 @@
 
 <div class="profile-skills">
   <h1>My Skills</h1>
-    <p>Skills list here</p>
+    <ul>
+      <% @user.skills.each do |skill|%>
+        <li>
+        <%= skill.skill %>
+        </li>
+      <% end %>
+    </ul>
   <div>Enter Skills:</div>
     <form action='/skills/user/<%= @current_user.id %>' method="post" >
       <input type="text" name="skill[skill]" placeholder="Enter Skill">
@@ -35,7 +41,7 @@
     <%= @user.website %>
   </div>
   <div>
-    <%= link_to "Profile Settings", edit_user_path(current_user) %>
+    <%= link_to "Edit Information", edit_user_path(current_user) %>
   </div>
 </div>
 
@@ -45,7 +51,13 @@
     <%= link_to 'New Project', new_project_path %>
   </div>
   <div>My Projects:</div>
-    <p>Projects list here</p>
+    <ul>
+      <% @user.projects.each do |project|%>
+        <li>
+        <%= project.title  %>
+        </li>
+      <% end %>
+    </ul>
 </div>
 
 
