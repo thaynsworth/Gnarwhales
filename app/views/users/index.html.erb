@@ -22,7 +22,7 @@ $(".jumper").on("click", function( e ) {
 
 <ul class="users">
 <% @users.keys.sort.each do |starting_letter| %>
-  <span class="letter-body"><div id="<%= starting_letter %>"><%= starting_letter %></div></span>
+  <span class="letter-body"><div id="<%= starting_letter %>"><%= starting_letter.upcase %></div></span>
   <% @users[starting_letter].each do |user| %>
 		
     <p class="user-index">

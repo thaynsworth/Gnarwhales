@@ -1,101 +1,78 @@
 
-<style>
 
-.center{
-  margin-top: 10px;
-  background-color: black;
-  color:white;
-  
-
-
-}
-
-h1 {
-  font-size: 40px;
-  margin-top: 10px;
-}
-
-.title {
-  background: black;
-  color:white;
-  opacity: 0.80;
-  margin-top: 20px;
-  height: 50px;
-  
-}
-
-.skills {
-  width: 50%
-}
-</style>
-
-
-
-
-
-
-
-<center>
-
-<div> 
-    <div class="title">
+<div class="profile-header">
+  <center>
     <div>
-      <h1 class="name">
-        <%= @user.name %>
-      </h1>
+      <%= gravatar_for @user %>
     </div>
+    <div>
+      <h1><%= @user.name %></h1>
+    </div>
+    <div class="profile-summary">
+      <%= @user.summary %>
+    </div>
+  </center>
+</div>
+
+<div class="profile-skills">
+  <h1>Skills</h1>
+    <ul>
+      <% @user.skills.each do |skill|%>
+        <li>
+        <%= skill.skill %>
+        </li>
+      <% end %>
+    </ul>
+    <% if @user == current_user %>
+      <div>Add Skills:</div>
+        <form class="profile-skills-button"action='/skills/user/<%= @current_user.id %>' method="post" >
+          <input type="text" name="skill[skill]" placeholder="Enter Skill">
+          <input type="hidden" name="user_id" value="<%= @current_user.id %>">
+          <%= token_tag %>
+          <input type="submit">
+        </form> 
+      <% else %>
+        <% nil %>
+       <% end %> 
+</div>
+
+<div class="profile-info">
+  <h1>Information</h1>
+  <div>
+     <%= @user.location %>
   </div>
-</center>
-   
-<center>
-<div class="center jumbotron">
-<div class="avatar">
- <center>
-    <%= gravatar_for @user %>
- </center>
-</div>
-
-
-
-
- 
-<center>
-<div class="location">
-   <%= @user.location %>
-</div>
-
-<div class="website">
-  <%= @user.website %>
-</div>
-<div>
-  <%= link_to 'New Project', new_project_path %>
-</div>
-<div>
-<%= link_to "Profile Settings", edit_user_path(current_user) %>
-</div>
-<h1>
-</center>
- 
- 
- <center>
-  <div class="summary">
-    <%= @user.summary %>
+  <div>
+    <%= @user.website %>
   </div>
- </center>
- 
+  <div>
+    <% if @user == current_user %>
+      <%= link_to "Edit Information", edit_user_path(current_user) %>
+      <% else %>
+      <% nil %>
+    <% end %>
+  </div>
 </div>
+
+<div class="profile-projects">
+  <h1>Projects</h1>
+  <% if @user == current_user %>
+    <div>
+      <%= link_to 'New Project', new_project_path %>
+    </div>
+  <% else %>
+    <% nil %>
+  <% end %>
+  <div>
+    <ul>
+      <% @user.projects.each do |project|%>
+        <li>
+          <a href="<%= project_path(project) %>">
+          <%= project.title  %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
-</h1>
-
-<center> 
-  <div>What Skills Do You Have?</div>
-  <form action='/skills/user/<%= @current_user.id %>' method="post" >
-    <input type="text" name="skill[skill]" placeholder="Enter Skill">
-    <input type="hidden" name="user_id" value="<%= @current_user.id %>">
-    <%= token_tag %>
-    <input type="submit">
-  </form> 
-</center>
 
 
-</body>
+
