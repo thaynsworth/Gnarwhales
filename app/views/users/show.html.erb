@@ -5,8 +5,7 @@
   margin-top: 10px;
   background-color: black;
   color:white;
-  margin-left: 30px;
-  margin-right: 30px;
+  
 
 
 }
@@ -16,16 +15,30 @@ h1 {
   margin-top: 10px;
 }
 
+.title {
+  background: black;
+  color:white;
+  opacity: 0.80;
+  margin-top: 20px;
+  height: 50px;
+  
+}
+
+.skills {
+  width: 50%
+}
 </style>
 
 
 
 
 
-<center>
- 
 
-    <div>
+
+<center>
+<div> 
+
+    <div class="title">
       <h1 class="name">
         <%= @user.name %>
       </h1>
@@ -33,7 +46,7 @@ h1 {
   </div>
 </center>
    
-
+<center>
 <div class="center jumbotron">
 <div class="avatar">
  <center>
@@ -70,10 +83,11 @@ h1 {
  </center>
  
 </div>
-
+</div>
 </h1>
 
 <center>
+  <div class="skills">
   <form action='/skills/user' method="post" >
     <select name="skill[skill]">
       <option value="carpentry">carpentry</option>
@@ -85,7 +99,8 @@ h1 {
     <%= token_tag %>
     <input type="submit">
   </form>
-</center>
+</div>
+</center> 
 
 
 </body>
