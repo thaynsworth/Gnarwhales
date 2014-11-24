@@ -15,6 +15,8 @@ class ProjectsController < ApplicationController
   def show
     user_relation
     @comments = @project.comments
+    @update = Update.new
+    @update.project_id = @project.id
   end
 
   # GET /projects/new

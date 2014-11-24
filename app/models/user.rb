@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :skills, as: :skillable
   has_many :contributions
   has_many :notifications
+  has_many :updates
 
   def collabs
     collabs_array = self.collaborations.map do |collab|
