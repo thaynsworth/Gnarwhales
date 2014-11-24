@@ -81,3 +81,21 @@
 .cd-select {
 	border: 1px solid #ddd;
 }
+
+.letters {
+	text-align: center;
+}
+.jumper {
+	font-size: 20px;
+	padding: 5px;
+	float: center;
+}
+
+.letter-body {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.user-index {
+	font-size: 20px;
+}

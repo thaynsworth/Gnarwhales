@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-  	@users = User.all 
-  end 
+    @users = User.all.group_by{|u| u.name[0]}
+    @letters = ("A".."Z").to_a
+
+  end
 
   def show
     @user = User.find(params[:id])
@@ -31,7 +33,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
+
     if @user.update_attributes(profile_params)
        flash[:success] = "Profile updated"
        redirect_to @user
