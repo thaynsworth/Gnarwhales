@@ -18,11 +18,20 @@ class CollaborationsController < ApplicationController
   def create
     new_collab = Collaboration.create(collaboration_params)
     notif_params = notification_params
-    project = Project.find(params[:notification][:project_id])
+    project = Project.find(params[:collaboration][:project_id])
     creator_id = User.find(project.user_id).id
-    notif_params[:user_id] = creator_id
-    new_collab.notifications.create(notif_params)
-    redirect_to project_path(params[:collaboration][:project_id])
+    if @current_user.id != creator_id
+      # Someone requests to colaborate on a project
+      notif_params[:user_id] = creator_id
+      new_collab.notifications.create(notif_params)
+      redirect_to project_path(params[:collaboration][:project_id])
+    else
+      # Creator invites someone to collaborate on a project
+      notif_params[:project_id] = project.id
+      notif_params[:description] = "#{@current_user.name} has invited you to colaborate on #{project.title}!"
+      new_collab.notifications.create(notif_params)
+      redirect_to user_path(params[:notification][:user_id])
+    end
   end
 
   def update

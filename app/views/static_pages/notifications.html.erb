@@ -1,5 +1,5 @@
 <style>
-	.collaberations{
+	.pending_collaborations{
 		float:right;
 		margin-right: 80px;
 		background-color: lightgrey;
@@ -30,13 +30,13 @@
 </div>
 
 
- <div class="collaberations">
-<% if @collaborations.empty? %>
+ <div class="pending_collaborations">
+<% if @pending_collaborations.empty? %>
   
   <h2>No pending Collaboration requests.</h2>
 <% else %>
   <ul>
-    <% @collaborations.each do |collab, hash| %>
+    <% @pending_collaborations.each do |collab, hash| %>
       <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.
       
       <%= form_tag collaboration_path(collab), method: :patch do %>

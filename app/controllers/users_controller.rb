@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @my_projects = @current_user.projects
+    
   end
 
   def new
