@@ -1,15 +1,31 @@
-<h1>All users</h1>
+<h1>User Directory</h1>
 
-<% @letters.each do |letter| %>
-	<a class="jumper" href="#<%= letter %>"><%= letter %></a>
-<% end %>
+<script>
+	
+$(".jumper").on("click", function( e ) {
+    
+    e.preventDefault();
+
+    $("body, html").animate({ 
+        scrollTop: $( $(this).attr('href') ).offset().top 
+    }, 600);
+    
+});
+
+</script>
+
+<div class="letters">
+	<% @letters.each do |letter| %>
+		<a class="jumper" href="#<%= letter %>"><%= letter %></a>
+	<% end %>
+</div>
 
 <ul class="users">
 <% @users.keys.sort.each do |starting_letter| %>
-  <div id="<%= starting_letter %>"><%= starting_letter %></div>
+  <span class="letter-body"><div id="<%= starting_letter %>"><%= starting_letter %></div></span>
   <% @users[starting_letter].each do |user| %>
 		
-    <p>
+    <p class="user-index">
     	<%= gravatar_for user %>
     	<%= link_to user.name, user %>
     </p>
