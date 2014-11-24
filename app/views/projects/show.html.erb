@@ -222,17 +222,22 @@
     <input id="ac-2" name="accordion-1" type="checkbox" />
         <label for="ac-2">Skills Involved</label>
         <article class="ac-large">
+          <ul>
+            <% @project.skills.each do |skill| %>
+              <li><%= skill.skill %></li>
+            <% end %>
+          </ul>
         </article>
   </div>
 
-  <div>
+<!--   <div>
     <input id="ac-3" name="accordion-1" type="checkbox" />
     <label for="ac-3">Resources</label>
     <article class="ac-medium">
       <p>Resources</p>
     </article>
   </div>
-
+ -->
   <div>
     <input id="ac-4" name="accordion-1" type="checkbox" />
     <label for="ac-4"><%= @project.collabs.count %> Collaborators</label>
