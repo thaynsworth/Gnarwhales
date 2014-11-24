@@ -11,6 +11,7 @@
   <strong>A Project by: <%= @project.user.name %></strong>
 </p>
 
+
 <!-- Generate button based on user relationship -->
 <div class="user-relation-btn">
     <% if @user_relation == "creator" %>
@@ -55,8 +56,10 @@
 
   <div id="proj-desc">
     <strong>About this Project:</strong>
-    <%= @project.description %>
+    <%= @project.description %> <br><br>
+    <strong><em>This project is scheduled to close on <%= @project.end_date.to_time.strftime('%b %d')%>!</em></strong>
   </div>
+
 
   <!-- Sharing bar -->
   <% if @user_relation == "creator" %>

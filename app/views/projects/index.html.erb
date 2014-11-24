@@ -41,7 +41,8 @@
   <% @projects[starting_letter].each do |project| %>
     <p class="project-idx">
       <%= image_tag project.image.url %>
-      <span id="proj-link"><%= link_to project.title, project %></span>
+      <span id="proj-link"><%= link_to project.title, project %></span><br>
+      <span id="proj-link"><strong>Ends <%= project.end_date.to_time.strftime('%b %d')%>!</strong></span>
     </p>
   <% end %>
 <% end %>
