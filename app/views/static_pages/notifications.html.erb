@@ -1,0 +1,40 @@
+<h1>
+	Notifications 
+</h1>
+
+
+<ul>
+	<% @notifications.each do |notif| %>
+       <li><%=notif.description%></li>
+
+	<%end%>
+</ul>
+
+<% if @collaborations.empty? %>
+  <h2>No pending Collaboration requests.</h2>
+<% else %>
+  <ul>
+    <% @collaborations.each do |collab, hash| %>
+      <%= hash[:user] %> wants to collaborate on <%= hash[:project] %>.
+      
+      <%= form_tag collaboration_path(collab), method: :patch do %>
+        <%= hidden_field_tag :'notification[project_id]', "" %>
+        <%= hidden_field_tag :'notification[user_id]', '0' %>
+        <%= hidden_field_tag :'notification[relation]', "creator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'answer' %>
+        <%= hidden_field_tag :'notification[description]', "" %>
+        <%= submit_tag "accept" %>
+      <% end %>
+
+      <%= form_tag destroy_collaboration_path(collab), method: :delete do %>
+        <%= hidden_field_tag :'notification[project_id]', "" %>
+        <%= hidden_field_tag :'notification[user_id]', '0' %>
+        <%= hidden_field_tag :'notification[relation]', "collaborator" %>
+        <%= hidden_field_tag :'notification[not_type]', 'answer' %>
+        <%= hidden_field_tag :'notification[description]', "" %>
+        <%= submit_tag "Deny" %>
+      <% end %>
+
+    <% end %>
+  </ul>
+<% end %>

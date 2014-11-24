@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   get 'help'    => 'static_pages#help'
   get 'about'   => 'static_pages#about'
+  get 'notifications' => 'static_pages#notifications'
   
   get 'signup' => 'users#new'
 
@@ -26,11 +27,6 @@ Rails.application.routes.draw do
   patch 'comments' => 'comments#update'
   delete 'comments/:id' => 'comments#destroy'
 
-  post 'notifications/request' => 'notifications#request_create'
-  post 'notifications/answer' => 'notifications#answer_create'
-  post 'notifications/comment' => 'notifications#comment_create'
-  post 'notifications/deadline' => 'notifications#deadline_create'
-  post 'notifications/share' => 'notifications#share_create'
   
 
   resources :users
