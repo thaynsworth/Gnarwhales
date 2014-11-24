@@ -72,15 +72,15 @@
       <form id="updates-input" action='/updates/project' method="post" >
         <input type="text" name="update[body]" placeholder="Your Project's Update">
         <input type="hidden" name="project_id" value="<%= @project.id %>">
-        <input type="hidden" name="user_id" value="<%= @project.user.id %>">
+        <input type="hidden" name="update[user_id]" value="<%= @project.user_id %>">
         <%= token_tag %>
-        <input type="submit" value="Post an Updates" id="skills-menu">
+        <input type="submit" value="Post an Updates" id="updates-menu">
       </form>
 
   <% end %>
 
 <strong><u>PROJECT UPDATES</u></strong>
-<% if @update.id == nil %>
+<% if @updates.empty? %>
   This project has no updates yet.
 <% else %>
   <ul>
