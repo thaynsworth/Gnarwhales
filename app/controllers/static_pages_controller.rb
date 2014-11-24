@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
     @disable_nav = true
+    if logged_in?
+    	redirect_to projects_path
+    end 
   end
 
   def notifications 

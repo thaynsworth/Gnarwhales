@@ -1,16 +1,38 @@
+<style>
+	.collaberations{
+		float:right;
+		margin-right: 80px;
+		background-color: lightgrey;
+       
+	}
+
+	.notifications{
+		float: left;
+		background: lightgrey;
+	}
+</style>
+
+
+
+
 <h1>
 	Notifications 
 </h1>
 
 
+<div class="notifications">
 <ul>
 	<% @notifications.each do |notif| %>
        <li><%=notif.description%></li>
 
 	<%end%>
 </ul>
+</div>
 
+
+ <div class="collaberations">
 <% if @collaborations.empty? %>
+  
   <h2>No pending Collaboration requests.</h2>
 <% else %>
   <ul>
@@ -37,4 +59,5 @@
 
     <% end %>
   </ul>
+</div>
 <% end %>
