@@ -71,7 +71,8 @@ h1 {
 
 </h1>
 
-<center>
+<center> 
+  <div>What Skills Do You Have?</div>
   <form action='/skills/user/<%= @current_user.id %>' method="post" >
     <input type="text" name="skill[skill]" placeholder="Enter Skill">
     <input type="hidden" name="user_id" value="<%= @current_user.id %>">

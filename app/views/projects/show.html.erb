@@ -62,13 +62,7 @@
   <% if @user_relation == "creator" %>
       <div id="skills-menu-title"> What Skills Are You Looking For?</div>
       <form id="skills-menu" action='/skills/project' method="post" >
-        <select id="cd-dropdown" name="skill[skill]">
-          <option value="-1" selected>Select Skills</option>
-          <option value="carpentry">carpentry</option>
-          <option value="design">design</option>
-          <option value="whittling">whittling</option>
-          <option value="barn-raising">barn-raising</option>
-        </select>
+        <input type="text" name="skill[skill]" placeholder="Enter Skill">
         <input type="hidden" name="project_id" value="<%= @project.id %>">
         <%= token_tag %>
         <input type="submit" value="List this Skill" id="skills-menu">
