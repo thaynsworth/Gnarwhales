@@ -24,7 +24,7 @@ class StaticPagesController < ApplicationController
       if collab.status == "invited"
         @invited_collaborations[collab.id] = {
           user: User.find(collab.user_id).name,
-          project: Project.find(collab.project_id).id,
+          project: Project.find(collab.project_id),
           status: collab.status}
       end
     end
