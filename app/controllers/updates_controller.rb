@@ -1,6 +1,7 @@
 class UpdatesController < ApplicationController
 
-  def create
+# fix indentation!
+def create
   @update = Update.new(update_params)
   @update.project_id = params[:project_id]
 

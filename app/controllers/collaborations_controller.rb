@@ -1,7 +1,8 @@
 class CollaborationsController < ApplicationController
-  
+
   def index
     @collaborations = {}
+    # move to method.
     @current_user.projects.each do |project|
       project.collaborations.each do |collab|
         if collab.status == "pending"
@@ -27,6 +28,10 @@ class CollaborationsController < ApplicationController
       redirect_to project_path(params[:collaboration][:project_id])
     else
       # Creator invites someone to collaborate on a project
+
+      # check out merge when you are modifying params hashes
+      # notif_params.merge({project_id: project_id, description: "aksldfjalskdfj"})
+
       notif_params[:project_id] = project.id
       notif_params[:description] = "#{@current_user.name} has invited you to colaborate on #{project.title}!"
       new_collab.notifications.create(notif_params)

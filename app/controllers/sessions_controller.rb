@@ -4,13 +4,14 @@ class SessionsController < ApplicationController
 
   def create
   	user = User.find_by(email: params[:session][:email].downcase)
+    # fix indentation.
     if user && user.authenticate(params[:session][:password])
     	log_in user
-        redirect_back_or user
-   else
-    flash[:danger] = 'Invalid email/password combination'
-  	render 'new'
-  end
+      redirect_back_or user
+    else
+      flash[:danger] = 'Invalid email/password combination'
+  	  render 'new'
+    end
   end
 
   def destroy

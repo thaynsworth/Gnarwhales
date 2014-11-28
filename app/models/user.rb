@@ -1,11 +1,19 @@
 class User < ActiveRecord::Base
+
+  # this is an example of a scope.  the arrow thing indicates
+  # that a proc is being defined.
+
+  scope :alphabetized, -> { all.group_by{|u| u.name[0] }}
+
   has_many :contributions
   has_many :comments
+  # sweet before save.
 	before_save { self.email = email.downcase }
 	validates :name, presence: true, length: { maximum: 50 }
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i  #regex for basic email -  should be a lot longer . . . a lot longer
+
+  # its sort of weird to defined a constant amidst this other macro declarations.
 	validates :email, presence: true,  length: { maximum: 255 },
-	                  format: { with: VALID_EMAIL_REGEX },
+	                  format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
 	                  uniqueness: { case_sensitive: false }
 	has_secure_password
   has_many :collaborations
@@ -17,19 +25,19 @@ class User < ActiveRecord::Base
   has_many :updates
 
   def collabs
-    collabs_array = self.collaborations.map do |collab|
+    # assignment is not necessary
+    self.collaborations.map do |collab|
       if collab.status != "pending"
         Project.find(collab.project_id)
       end
     end
-    collabs_array
   end
   def pending_collabs
-    pending_collabs_array = self.collaborations.map do |collab|
+    # assignment is not necessary
+    self.collaborations.map do |collab|
       if collab.status == "pending"
         Project.find(collab.project_id)
       end
     end
-    pending_collabs_array
   end
 end

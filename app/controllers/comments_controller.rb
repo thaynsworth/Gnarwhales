@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController
+
+  # woah, this create action is absolutely huge.  you should definitely
+  # consider refactoring.  in the real world, other people will be
+  # expected to work off of your codebase and their brains will explode
+  # when they come across something like this.
+
   def create
     new_comment = Comment.create(comment_params)
     notif_params = notification_params

@@ -1,8 +1,17 @@
 require 'test_helper'
 
+=begin
+  These tests would make DHH proud.  Nice work.
+=end
+
 class ProjectsControllerTest < ActionController::TestCase
   setup do
     @project = projects(:one)
+  end
+
+  # you should specify a teardown block or method in addition to setup.
+  teardown do
+    @project = nil
   end
 
   test "should get index" do

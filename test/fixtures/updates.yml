@@ -1,20 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+=begin
+
+ Looks like you have an unresolved merge conflict here.  This is actually causing your tests to error out.  Definitely take time to resolve this issue.
+
+=end
+
 one:
 <<<<<<< HEAD
-  project_id: 
+  project_id:
   body: MyText
 
 two:
-  project_id: 
+  project_id:
   body: MyText
 =======
   body: MyText
-  user_id: 
-  project_id: 
+  user_id:
+  project_id:
 
 two:
   body: MyText
-  user_id: 
-  project_id: 
+  user_id:
+  project_id:
 >>>>>>> updates

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # this doens't look like it does anything.
 
   get 'users/new'
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   root 'static_pages#home'
 
+  # i might prefer that you use resources here.  nevertheless, its good to do things by hand.
   post 'collaborations/create' => 'collaborations#create', as: "new_collaboration"
   get 'collaborations' => 'collaborations#index', as: "collaborations"
   delete'collaborations/destroy/:id' => 'collaborations#destroy', as: "destroy_collaboration"
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :projects 
+  resources :projects
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

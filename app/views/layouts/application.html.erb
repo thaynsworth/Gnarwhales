@@ -11,13 +11,20 @@
 <body>
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<!-- fix indentation -->
+<script>
+
+// make sure you understand that this is a self invoking anonymous function.
+
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+</script>
 
 
 
@@ -29,9 +36,9 @@
           <ul class="nav navbar-nav pull-right">
             <li><%= link_to "Home",   root_path %></li>
             <li><%= link_to "About",   about_path %></li>
-            
+
             <% if logged_in? %>
-            
+
           <li><%= link_to "Users", users_path %></li>
           <li><%= link_to "Discover",   projects_path %></li>
           <li><%= link_to "Notifications",   notifications_path %></li>

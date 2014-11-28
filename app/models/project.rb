@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  
+
   belongs_to :user
   has_many :comments
   has_many :collaborations
@@ -17,7 +17,8 @@ class Project < ActiveRecord::Base
   end
 
   def collabs
-    collabs = self.collaborations.select do |collab|
+    # no need for assignment here.
+    self.collaborations.select do |collab|
       collab.status == "collaborator"
     end
   end

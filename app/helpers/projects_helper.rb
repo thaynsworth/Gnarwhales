@@ -1,4 +1,10 @@
 module ProjectsHelper
+
+
+  # this method is pretty difficult to read.  could it be broken out into
+  # multiple methods?  Also, you might want to look into ActiveRecord
+  # scopes on your Collaboration model.  It would dry up lines 15-23.
+
   def user_relation
     if @current_user.projects.include?(@project)
       @user_relation = "creator"

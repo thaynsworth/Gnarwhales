@@ -4,8 +4,9 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    # again, take a look at scopes.
     @projects = Project.all.group_by{|u| u.title[0]}
-    @letters = ("A".."Z").to_a   
+    @letters = ("A".."Z").to_a
   end
 
 
